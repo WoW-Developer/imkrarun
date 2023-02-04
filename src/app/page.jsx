@@ -5,15 +5,15 @@ export default function Home() {
     <div className="h-full w-full max-w-[900px] mx-auto">
       {/* 2Cols */}
       <div className=" h-20 sm:h-36">
-        <h1>""</h1>
+        <h1></h1>
       </div>
       <div className="flex flex-col-reverse h-full pt-14 p-4 items-center sm:flex-row-reverse">
         {/* 1st Col */}
         <div className="sm:basis-1/2 text-xl sm:text-2xl p-4 text-center items-center flex flex-col self-center">
           <h1>
-            Maths doesn't have to be a mystery! I'm an experienced tutor helping
-            students learn and understand the fundamentals of maths. Let me help
-            unlock your potential!
+            Maths doesn`&quot;`t have to be a mystery! I`&quot;`m an experienced
+            tutor helping students learn and understand the fundamentals of
+            maths. Let me help unlock your potential!
           </h1>
           <img className="h-24 w-fit " src="./favicon.png" />
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
