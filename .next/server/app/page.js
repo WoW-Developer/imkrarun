@@ -319,11 +319,7 @@ function Home() {
                         className: "sm:basis-1/2 text-xl sm:text-2xl p-4 text-center items-center flex flex-col self-center",
                         children: [
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                                children: 'Maths doesn`"`t have to be a mystery! I`"`m an experienced tutor helping students learn and understand the fundamentals of maths. Let me help unlock your potential!'
-                            }),
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                                className: "h-24 w-fit ",
-                                src: "./favicon.png"
+                                children: "Maths doesn't have to be a mystery! I'm an experienced tutor helping students learn and understand the fundamentals of maths. Let me help unlock your potential!"
                             }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 className: "rounded-md flex bg-blue-600 text-base text-white p-2 m-2",
@@ -331,6 +327,10 @@ function Home() {
                                     href: "/request",
                                     children: "Book A Demo"
                                 })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
+                                className: "h-24 w-fit ",
+                                src: "./favicon.png"
                             })
                         ]
                     }),

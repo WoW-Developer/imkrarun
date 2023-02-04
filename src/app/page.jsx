@@ -11,7 +11,7 @@ export default function Home() {
         {/* 1st Col */}
         <div className="sm:basis-1/2 text-xl sm:text-2xl p-4 text-center items-center flex flex-col self-center">
           <h1>
-            Maths doesn`&quot;`t have to be a mystery! I`&quot;`m an experienced
+            Maths doesn&#039;t have to be a mystery! I&#039;m an experienced
             tutor helping students learn and understand the fundamentals of
             maths. Let me help unlock your potential!
           </h1>

@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className="debug-screens h-full w-full ">
+      <body className="h-full w-full ">
         <div className={google.className}>
           <div className="flex flex-col">
             <NavBar />
