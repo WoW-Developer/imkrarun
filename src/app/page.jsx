@@ -15,10 +15,10 @@ export default function Home() {
             tutor helping students learn and understand the fundamentals of
             maths. Let me help unlock your potential!
           </h1>
-          <img className="h-24 w-fit " src="./favicon.png" />
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
             <Link href={"/request"}>Book A Demo</Link>
           </div>
+          <img className="h-24 w-fit " src="./favicon.png" />
         </div>
 
         {/* 2nd Col */}
