@@ -18,6 +18,8 @@ export default function Page() {
 <Image
 className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
       src="/hero.png"
+      height='200'
+      width='300'
       alt="info graphics"
     /> 
           </div>

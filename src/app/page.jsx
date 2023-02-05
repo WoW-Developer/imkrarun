@@ -23,6 +23,8 @@ export default function Home() {
 className="h-24 w-fit object-scale-down"
       src="/favicon.png"
       alt="info graphic"
+      height='200'
+      width='300'
 style={{objectFit: "scale-down"}}
     /> 
         </div>
@@ -35,6 +37,8 @@ style={{objectFit: "scale-down"}}
       className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-scale-down"
       src="/hero.png"
       alt="info graphic"
+      height='200'
+      width='300'
 style={{objectFit: "scale-down"}}
     /> 
         </div>
