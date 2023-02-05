@@ -19,7 +19,12 @@ export default function Home() {
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
             <Link href={"/request"}>Book A Demo</Link>
           </div>
-          <img className="h-24 w-fit " src="./favicon.png" />
+          <div className="h-24 w-fit " ><Image
+      src="/favicon.png"
+      alt="info graphic"
+style={{objectFit: "scale-down"}}
+    /> 
+</div>
         </div>
 
         {/* 2nd Col */}
@@ -32,7 +37,7 @@ export default function Home() {
           ><Image
       src="/hero.png"
       alt="info graphic"
-style={{objectFit: "contain"}}
+style={{objectFit: "scale-down"}}
     /> 
 </div>
         </div>
