@@ -24,7 +24,7 @@ export default function handler(req, res) {
 <lastmod>2023-02-05T07:16:46+00:00</lastmod>
 <priority>0.80</priority>
 </url>
-</urlset>
+</urlset>`
 
   res.end(xml)
 }
