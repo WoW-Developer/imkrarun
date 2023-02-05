@@ -30,7 +30,7 @@ export default function Home() {
             className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
             src="./hero.png"
           ><Image
-      src="./hero.png"
+      src="/hero.png"
       alt="Sign of the author"
 style={{objectFit: "contain"}}
     /> 
