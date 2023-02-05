@@ -18,7 +18,7 @@ export default function Home() {
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
             <Link href={"/request"}>Book A Demo</Link>
           </div>
-          <img className="h-24 w-fit " src="./favicon.png" />
+          <img className="h-24 w-fit " src="/favicon.png" />
         </div>
 
         {/* 2nd Col */}
@@ -26,7 +26,7 @@ export default function Home() {
         <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
           <img
             className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
-            src="./hero.png"
+            src="/hero.png"
           />
         </div>
         {/* End of 2 Cols */}
