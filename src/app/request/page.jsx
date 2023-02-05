@@ -19,9 +19,9 @@ export default function Page() {
          
             >
 <Image
-      src="./hero.png"
-      alt="Sign of the author"
-style={{objectFit: "contain"}}
+      src="/hero.png"
+      alt="info graphics"
+style={{objectFit: "scale-down"}}
     /> </div>
           </div>
           {/* End of 2 Cols */}
