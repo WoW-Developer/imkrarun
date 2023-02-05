@@ -25,7 +25,6 @@ className="h-24 w-fit object-scale-down"
       alt="info graphic"
 style={{objectFit: "scale-down"}}
     /> 
-</div>
         </div>
 
         {/* 2nd Col */}
