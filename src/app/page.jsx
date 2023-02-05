@@ -19,7 +19,8 @@ export default function Home() {
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
             <Link href={"/request"}>Book A Demo</Link>
           </div>
-          <div className="h-24 w-fit " ><Image
+         <Image 
+className="h-24 w-fit object-scale-down"
       src="/favicon.png"
       alt="info graphic"
 style={{objectFit: "scale-down"}}
@@ -31,15 +32,12 @@ style={{objectFit: "scale-down"}}
 
         <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
          
-<div
-            className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
-            src="./hero.png"
-          ><Image
+<Image
+      className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-scale-down"
       src="/hero.png"
       alt="info graphic"
 style={{objectFit: "scale-down"}}
     /> 
-</div>
         </div>
         {/* End of 2 Cols */}
       </div>
