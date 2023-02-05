@@ -21,7 +21,7 @@ export default function Page() {
 <Image
       src="/hero.png"
       alt="info graphics"
-style={{objectFit: "scale-down"}}
+style={{objectFit: "contain"}}
     /> </div>
           </div>
           {/* End of 2 Cols */}
