@@ -15,7 +15,7 @@ export default function Page() {
 
           <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
             <div
-              className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-scale-down"
+              className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
          
             >
 <Image
