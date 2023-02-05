@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -18,15 +19,26 @@ export default function Home() {
           <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
             <Link href={"/request"}>Book A Demo</Link>
           </div>
-          <img className="h-24 w-fit " src="/favicon.png" />
+          <Image
+            className="h-24 w-fit object-scale-down"
+            src="/favicon.png"
+            alt="info graphic"
+            height="200"
+            width="300"
+            style={{ objectFit: "scale-down" }}
+          />
         </div>
 
         {/* 2nd Col */}
 
         <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
-          <img
-            className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
+          <Image
+            className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-scale-down"
             src="/hero.png"
+            alt="info graphic"
+            height="200"
+            width="300"
+            style={{ objectFit: "scale-down" }}
           />
         </div>
         {/* End of 2 Cols */}

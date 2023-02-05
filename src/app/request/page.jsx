@@ -1,4 +1,5 @@
 import Form from "./form";
+import Image from "next/image"
 export default function Page() {
   return (
     <div className="min-h-screen flex w-full">
@@ -13,10 +14,14 @@ export default function Page() {
           {/* 2nd Col */}
 
           <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
-            <img
-              className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
-              src="./hero.png"
-            />
+            
+<Image
+className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
+      src="/hero.png"
+      height='200'
+      width='300'
+      alt="info graphics"
+    /> 
           </div>
           {/* End of 2 Cols */}
         </div>
