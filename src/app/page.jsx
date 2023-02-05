@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -24,10 +25,16 @@ export default function Home() {
         {/* 2nd Col */}
 
         <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
-          <img
+         
+<div
             className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-contain"
             src="./hero.png"
-          />
+          ><Image
+      src="./hero.png"
+      alt="Sign of the author"
+style={{objectFit: "contain"}}
+    /> 
+</div>
         </div>
         {/* End of 2 Cols */}
       </div>
