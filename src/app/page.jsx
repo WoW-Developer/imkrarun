@@ -31,7 +31,7 @@ export default function Home() {
             src="./hero.png"
           ><Image
       src="/hero.png"
-      alt="Sign of the author"
+      alt="info graphic"
 style={{objectFit: "contain"}}
     /> 
 </div>
