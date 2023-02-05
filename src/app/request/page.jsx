@@ -14,15 +14,13 @@ export default function Page() {
           {/* 2nd Col */}
 
           <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
-            <div
-              className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
-         
-            >
+            
 <Image
+className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
       src="/hero.png"
       alt="info graphics"
 fill={true}
-    /> </div>
+    /> 
           </div>
           {/* End of 2 Cols */}
         </div>
