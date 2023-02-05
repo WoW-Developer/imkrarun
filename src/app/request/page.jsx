@@ -19,7 +19,6 @@ export default function Page() {
 className="h-40 sm:h-60 rounded-lg self-center object-scale-down"
       src="/hero.png"
       alt="info graphics"
-fill={true}
     /> 
           </div>
           {/* End of 2 Cols */}
