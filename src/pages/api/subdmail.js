@@ -77,7 +77,7 @@ export default async function handler(req, res) {
             function (error) {
               ///console.error(error);
               const nx = "Some error found" + error + "";
-              res.status(400).json({
+              res.status(404).json({
                 message: nx,
                 id: null,
               });

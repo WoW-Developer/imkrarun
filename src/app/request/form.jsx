@@ -103,7 +103,7 @@ const Form = () => {
             fill="currentFill"
           />
         </svg>
-        <span className="sr-only">Loading...</span>
+        <h1 className="sr-only">Loading...</h1>
       </div>
       <form
         id="form"
