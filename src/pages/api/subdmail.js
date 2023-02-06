@@ -8,16 +8,15 @@ SibApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
 
 export default async function handler(req, res) {
   if (req?.body?.name && req?.body?.mail && req?.body?.phone) {
+    s;
     await fetch(
       "https://cmvqmaptqbechzebmqsn.supabase.co/rest/v1/formRequests",
       {
         method: "POST",
         headers: {
-          apikey:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtdnFtYXB0cWJlY2h6ZWJtcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ5NTEyMjYsImV4cCI6MTk5MDUyNzIyNn0.a_g8ktLcQclsxdGCmUoqayVoLIRzeSmXbjA5UpRpPeM",
+          apikey: process.env.API_SUPA_KEY,
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNtdnFtYXB0cWJlY2h6ZWJtcXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ5NTEyMjYsImV4cCI6MTk5MDUyNzIyNn0.a_g8ktLcQclsxdGCmUoqayVoLIRzeSmXbjA5UpRpPeM",
-          "Content-Type": "application/json",
           Prefer: "return=minimal",
         },
         // body: '{ "some_column": "someValue", "other_column": "otherValue" }',
@@ -29,14 +28,22 @@ export default async function handler(req, res) {
         }),
       }
     )
-      .then(() => {
-        new SibApiV3Sdk.TransactionalEmailsApi()
-          .sendTransacEmail({
-            subject: "Thanks for Showing the Intrest in Our Services.",
-            sender: { email: "arun@iamkrarun.com", name: "Tutor Arun" },
-            replyTo: { email: "no-reply@iamkrarun.com", name: "Boss" },
-            to: [{ name: req.body.name, email: req.body.mail }],
-            htmlContent: `<html>
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          res.status(404).json({
+            error: "Error Saving Data",
+          });
+        }
+
+        if (response.ok) {
+          new SibApiV3Sdk.TransactionalEmailsApi()
+            .sendTransacEmail({
+              subject: "Thanks for Showing the Intrest in Our Services.",
+              sender: { email: "arun@iamkrarun.com", name: "Tutor Arun" },
+              replyTo: { email: "no-reply@iamkrarun.com", name: "Boss" },
+              to: [{ name: req.body.name, email: req.body.mail }],
+              htmlContent: `<html>
     <head>
       <meta charset="utf-8">
       <title>Thank you for choosing us</title>
@@ -63,26 +70,27 @@ export default async function handler(req, res) {
     </body>
   </html>
   `,
-            params: { bodyMessage: "Made just for you!" },
-          })
-          .then(
-            function (data) {
-              //console.log(data);
-              res.status(200).json({
-                message:
-                  "Thank you for your request. We have received it and will be in touch shortly.",
-                id: data.messageId,
-              });
-            },
-            function (error) {
-              ///console.error(error);
-              const nx = "Some error found" + error + "";
-              res.status(400).json({
-                message: nx,
-                id: null,
-              });
-            }
-          );
+              params: { bodyMessage: "Made just for you!" },
+            })
+            .then(
+              function (data) {
+                //console.log(data);
+                res.status(200).json({
+                  message:
+                    "Thank you for your request. We have received it and will be in touch shortly.",
+                  id: data.messageId,
+                });
+              },
+              function (error) {
+                ///console.error(error);
+                const nx = "Some error found" + error + "";
+                res.status(400).json({
+                  message: nx,
+                  id: null,
+                });
+              }
+            );
+        }
       })
       .catch((err) => {
         res.status(404).json({
