@@ -62,11 +62,27 @@ const Form = () => {
     errmail.style({ display: "none" });
     if (formData.phone == null || formData.phone.length == 0) {
       errphone.style({ display: "block" });
+      setLoading(false);
       return;
     }
     errphone.style({ display: "none" });
 
-    // Submit form data to API
+    await fetch("/api/subdmail", {
+      body: JSON.stringify({
+        name: formData.name,
+        mail: formData.email,
+        phone: formData.phone,
+        suggestion: formData.suggestion ? formData.pull.suggestion : "N/A",
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        setLoading(false);
+      }
+      if (!res.ok) {
+        setLoading(false);
+        alert("Some Error Occured");
+      }
+    });
   };
 
   return (
