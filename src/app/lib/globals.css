@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-iframe {
-  display: block; /* iframes are inline by default */
-  background: #fff;
-  border: none; /* Reset default border */
-  height: 100vh; /* Viewport-relative units */
-  width: 100%;
-  flex-grow: 1;
+.starlabel label:after {
+  content: " *";
+  color: red;
 }
