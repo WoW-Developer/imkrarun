@@ -1,5 +1,6 @@
 //project_directory/emailBuilder.js
 
+
 var SibApiV3Sdk = require("sib-api-v3-sdk");
 SibApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   process.env.API_SEND_BLUE;
@@ -7,14 +8,13 @@ SibApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
 export default async function handler(req, res) {
   if (req?.body?.name && req?.body?.mail && req?.body?.phone) {
     await fetch(
-      "https://cmvqmaptqbechzebmqsn.supabase.co/rest/v1/formRequests/",
+      "https://cmvqmaptqbechzebmqsn.supabase.co/rest/v1/formRequests",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          apikey: process.env.API_SUPA_KEY,
-          Prefer: "return=minimal",
-        },
+          'apikey': process.env.API_SUPA_KEY,
+          },
         // body: '{ "some_column": "someValue", "other_column": "otherValue" }',
         body: JSON.stringify({
           "name": req.body.name,
@@ -25,11 +25,10 @@ export default async function handler(req, res) {
       }
     ).then(response =>{
       
-      if (!response.ok) {
-        res.status(404).json('Error Happend');
-      }
+      if (!response.ok) { 
+        console.log(response.body);res.status(404).json('Error Happend'); return
+      } console.log('Supa is fine');
 
-      if (response.ok) {
         new SibApiV3Sdk.TransactionalEmailsApi()
           .sendTransacEmail({
             subject: "Thanks for Showing the Intrest in Our Services.",
@@ -75,7 +74,7 @@ export default async function handler(req, res) {
               });
             },
             function (error) {
-              ///console.error(error);
+      //        console.error(error);
               const nx = "Some error found" + error + "";
               res.status(404).json({
                 message: nx,
@@ -83,9 +82,9 @@ export default async function handler(req, res) {
               });
             }
           );
-      }
     })
     .catch((err) => {
+      //console.log(err);
       res.status(404).json({
         message: "Some Error Occured",
       });
@@ -93,7 +92,7 @@ export default async function handler(req, res) {
 
     }
     else {
-    // console.log(req.body.mail);
+    //console.log('Fake Value'+ req.body.mail +" "+ req.body.name);
     res.status(404).json({
       result: "Invalid Request",
     });

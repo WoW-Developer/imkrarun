@@ -47,41 +47,40 @@ const Form = () => {
     const errsuggestion = document.getElementById("errname");
 
     if (formData.name == null || formData.name.length == 0) {
-      errname.style({ display: "block" });
+      errname.style.display="block";
       setLoading(false);
       return;
     }
-    errname.style({ display: "none" });
+    errname.style.display="none"
 
-    if (formData.mail == null || formData.email.length == 0) {
-      errmail.style({ display: "block" });
+    if (formData.email == null || formData.email.length == 0) {
+      errmail.style.display="block"
       setLoading(false);
       return;
     }
-    errmail.style({ display: "none" });
+    errmail.style.display="none"
+
     if (formData.phone == null || formData.phone.length == 0) {
-      errphone.style({ display: "block" });
+      errphone.style.display="block";
       setLoading(false);
       return;
     }
-    errphone.style({ display: "none" });
+    errphone.style.display="none";
 
-    await fetch("/api/subdmail", {
-      body: JSON({
-        name: formData.name,
-        mail: formData.email,
-        phone: formData.phone,
-        suggestion: formData.suggestion ? formData.pull.suggestion : "N/A",
+   const res = await fetch("/api/subdmail", {
+      method:"POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        "name": formData.name,
+        "mail": formData.email,
+        "phone": formData.phone,
+        "suggestion": formData.suggestion ? formData.suggestion : "N/A",
       }),
-    }).then((res) => {
-      if (res.ok) {
-        setLoading(false);
-      }
-      if (!res.ok) {
-        setLoading(false);
-        alert("Some Error Occured");
-      }
-    });
+    }).catch(er=>{ setLoading(false); console.log(er);setLoading(false); return});
+    setLoading(false);
+    console.log(res)
   };
 
   return (
