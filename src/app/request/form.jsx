@@ -1,5 +1,4 @@
 "use client";
-import { sendEtagResponse } from "next/dist/server/send-payload";
 import React, { useEffect, useState } from "react";
 
 const Form = () => {
@@ -68,7 +67,7 @@ const Form = () => {
     errphone.style({ display: "none" });
 
     await fetch("/api/subdmail", {
-      body: JSON.stringify({
+      body: JSON({
         name: formData.name,
         mail: formData.email,
         phone: formData.phone,
