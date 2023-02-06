@@ -19,10 +19,10 @@ export default async function handler(req, res) {
         },
         // body: '{ "some_column": "someValue", "other_column": "otherValue" }',
         body: {
-          name: req.body.name,
-          mail: req.body.mail,
-          phone: req.body.phone,
-          suggestion: req.body.suggestion ? req.body.suggestion : "N/A",
+          "name": req.body.name,
+          "mail": req.body.mail,
+          "phone": req.body.phone,
+          "suggestion": req.body.suggestion ? req.body.suggestion : "N/A",
         },
       }
     );
