@@ -4,5 +4,11 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("tailwindcss-debug-screens")],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [
+    require("tailwindcss-debug-screens"),
+    require("@tailwindcss/aspect-ratio"),
+  ],
 };

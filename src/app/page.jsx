@@ -21,7 +21,7 @@ export default function Home() {
           </div>
           <Image
             className="h-24 w-fit object-scale-down"
-            src="/favicon.png"
+            src="/favicon.webp"
             alt="info graphic"
             height="200"
             width="300"
@@ -34,7 +34,7 @@ export default function Home() {
         <div className=" h-full w-full text-center items-center flex flex-col sm:basis-1/2 justify-center overflow-hidden">
           <Image
             className="h-40 sm:h-60 rounded-lg overflow-hidden self-center object-scale-down"
-            src="/hero.png"
+            src="/hero.webp"
             alt="info graphic"
             height="200"
             width="300"
