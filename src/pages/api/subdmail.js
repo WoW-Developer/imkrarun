@@ -1,40 +1,42 @@
 //project_directory/emailBuilder.js
 
-
 var SibApiV3Sdk = require("sib-api-v3-sdk");
 SibApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   process.env.API_SEND_BLUE;
 
 export default async function handler(req, res) {
-  if (req?.body?.name && req?.body?.mail && req?.body?.phone) {
+  if (req?.body?.name && req?.body?.email && req?.body?.phone) {
     await fetch(
       "https://cmvqmaptqbechzebmqsn.supabase.co/rest/v1/formRequests",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'apikey': process.env.API_SUPA_KEY,
-          },
+          apikey: process.env.API_SUPA_KEY,
+        },
         // body: '{ "some_column": "someValue", "other_column": "otherValue" }',
         body: JSON.stringify({
-          "name": req.body.name,
-          "mail": req.body.mail,
-          "phone": req.body.phone,
-          "suggestion": req.body.suggestion ? req.body.suggestion : "N/A",
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          suggestion: req.body.suggestion ? req.body.suggestion : "N/A",
         }),
       }
-    ).then(response =>{
-      
-      if (!response.ok) { 
-        console.log(response.body);res.status(404).json('Error Happend'); return
-      } console.log('Supa is fine');
+    )
+      .then((response) => {
+        if (!response.ok) {
+          console.log(response.body);
+          res.status(404).json("Error Happend");
+          return;
+        }
+        console.log("Supa is fine");
 
         new SibApiV3Sdk.TransactionalEmailsApi()
           .sendTransacEmail({
             subject: "Thanks for Showing the Intrest in Our Services.",
             sender: { email: "arun@iamkrarun.com", name: "Tutor Arun" },
             replyTo: { email: "no-reply@iamkrarun.com", name: "Boss" },
-            to: [{ name: req.body.name, email: req.body.mail }],
+            to: [{ name: req.body.name, email: req.body.email }],
             htmlContent: `<html>
   <head>
     <meta charset="utf-8">
@@ -74,7 +76,7 @@ export default async function handler(req, res) {
               });
             },
             function (error) {
-      //        console.error(error);
+              //        console.error(error);
               const nx = "Some error found" + error + "";
               res.status(404).json({
                 message: nx,
@@ -82,16 +84,14 @@ export default async function handler(req, res) {
               });
             }
           );
-    })
-    .catch((err) => {
-      //console.log(err);
-      res.status(404).json({
-        message: "Some Error Occured",
+      })
+      .catch((err) => {
+        //console.log(err);
+        res.status(404).json({
+          message: "Some Error Occured",
+        });
       });
-    });
-
-    }
-    else {
+  } else {
     //console.log('Fake Value'+ req.body.mail +" "+ req.body.name);
     res.status(404).json({
       result: "Invalid Request",

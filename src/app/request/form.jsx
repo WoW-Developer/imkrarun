@@ -39,7 +39,7 @@ const Form = () => {
     event.preventDefault();
     const name = document.getElementById("name");
     const errname = document.getElementById("errname");
-    const mail = document.getElementById("email");
+    const email = document.getElementById("email");
     const errmail = document.getElementById("erremail");
     const phone = document.getElementById("phone");
     const errphone = document.getElementById("errphone");
@@ -47,40 +47,45 @@ const Form = () => {
     const errsuggestion = document.getElementById("errname");
 
     if (formData.name == null || formData.name.length == 0) {
-      errname.style.display="block";
+      errname.style.display = "block";
       setLoading(false);
       return;
     }
-    errname.style.display="none"
+    errname.style.display = "none";
 
     if (formData.email == null || formData.email.length == 0) {
-      errmail.style.display="block"
+      errmail.style.display = "block";
       setLoading(false);
       return;
     }
-    errmail.style.display="none"
+    errmail.style.display = "none";
 
     if (formData.phone == null || formData.phone.length == 0) {
-      errphone.style.display="block";
+      errphone.style.display = "block";
       setLoading(false);
       return;
     }
-    errphone.style.display="none";
+    errphone.style.display = "none";
 
-   const res = await fetch("/api/subdmail", {
-      method:"POST",
+    const res = await fetch("/api/subdmail", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body:JSON.stringify({
-        "name": formData.name,
-        "mail": formData.email,
-        "phone": formData.phone,
-        "suggestion": formData.suggestion ? formData.suggestion : "N/A",
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        suggestion: formData.suggestion ? formData.suggestion : "N/A",
       }),
-    }).catch(er=>{ setLoading(false); console.log(er);setLoading(false); return});
+    }).catch((er) => {
+      setLoading(false);
+      console.log(er);
+      setLoading(false);
+      return;
+    });
     setLoading(false);
-    console.log(res)
+    console.log(res);
   };
 
   return (
