@@ -3,14 +3,14 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-async rewrites() {
+  async rewrites() {
     return [
       {
-        source: '/sitemap.xml',
-        destination: '/api/sitemap',
+        source: "/sitemap.xml",
+        destination: "/api/sitemap",
       },
-    ]
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
