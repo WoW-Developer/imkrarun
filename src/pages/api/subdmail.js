@@ -25,11 +25,11 @@ export default async function handler(req, res) {
     )
       .then((response) => {
         if (!response.ok) {
-          console.log(response.body);
+          //console.log(response.body);
           res.status(404).json("Error Happend");
           return;
         }
-        console.log("Supa is fine");
+        //console.log("Supa is fine");
 
         new SibApiV3Sdk.TransactionalEmailsApi()
           .sendTransacEmail({

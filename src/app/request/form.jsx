@@ -37,13 +37,13 @@ const Form = () => {
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
-    const name = document.getElementById("name");
+    const iname = document.getElementById("name");
     const errname = document.getElementById("errname");
-    const email = document.getElementById("email");
+    const iemail = document.getElementById("email");
     const errmail = document.getElementById("erremail");
-    const phone = document.getElementById("phone");
+    const iphone = document.getElementById("phone");
     const errphone = document.getElementById("errphone");
-    const suggestion = document.getElementById("name");
+    const isuggestion = document.getElementById("name");
     const errsuggestion = document.getElementById("errname");
 
     if (formData.name == null || formData.name.length == 0) {
@@ -80,12 +80,16 @@ const Form = () => {
       }),
     }).catch((er) => {
       setLoading(false);
-      console.log(er);
+      // console.log(er);
       setLoading(false);
       return;
     });
+    iemail.value = "";
+    iphone.value = "";
+    iname.value = "";
+    isuggestion.value = "";
     setLoading(false);
-    console.log(res);
+    //console.log(res);
   };
 
   return (
