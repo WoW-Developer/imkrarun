@@ -1,7 +1,6 @@
 import "./lib/globals.css";
 import { Raleway } from "@next/font/google";
 import NavBar from "./lib/NavBar";
-import { AnalyticsWrapper } from "./lib/analytics";
 // const raleway = Raleway({ subsets: ["latin"] });
 const google = Raleway({ subsets: ["latin"] });
 
@@ -18,12 +17,9 @@ export default function RootLayout({ children }) {
           <div className="flex flex-col">
             <NavBar />
             {/* <div className="w-20 mt-12 fixed top-0 left-0 bottom-0 bg-amber-600"></div> */}
-            <div className={google.className}>
-              <div>
+            <div>
                 {children}
-                <AnalyticsWrapper />
-              </div>
-            </div>
+                            </div>
           </div>
         </div>
       </body>

@@ -16,10 +16,10 @@ export default async function handler(req, res) {
         },
         // body: '{ "some_column": "someValue", "other_column": "otherValue" }',
         body: JSON.stringify({
-          name: req.body.name,
-          email: req.body.email,
-          phone: req.body.phone,
-          suggestion: req.body.suggestion ? req.body.suggestion : "N/A",
+          "name": req.body.name,
+          "email": req.body.email,
+          "phone": req.body.phone,
+          "suggestion": req.body.suggestion ? req.body.suggestion : "N/A",
         }),
       }
     )
@@ -69,32 +69,27 @@ export default async function handler(req, res) {
           .then(
             function (data) {
               //console.log(data);
-              res.status(200).json({
-                message:
-                  "Thank you for your request. We have received it and will be in touch shortly.",
-                id: data.messageId,
-              });
+              
+              res.writeHead(200,'Email Send to User');
+              res.end("Thank you for your request. We have received it and will be in touch shortly.",);
             },
             function (error) {
-              //        console.error(error);
-              const nx = "Some error found" + error + "";
-              res.status(404).json({
-                message: nx,
-                id: null,
-              });
+            
+              res.writeHead(410,'Error While Sending Email');
+              res.end("Please Verify Your Email"+error.message,);
+            
             }
           );
       })
       .catch((err) => {
         //console.log(err);
-        res.status(404).json({
-          message: "Some Error Occured",
-        });
-      });
+        res.writeHead(420,'Error while processing');
+        res.end("There might be sone error Try again later"+err.message,);
+      }
+      )
   } else {
-    //console.log('Fake Value'+ req.body.mail +" "+ req.body.name);
-    res.status(404).json({
-      result: "Invalid Request",
-    });
+    
+    res.writeHead(430,'Invalid Request');
+    res.end("Invalid Request cannot Respond",);
   }
 }

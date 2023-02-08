@@ -1,3 +1,4 @@
+'use client'
 import Form from "./form";
 import Image from "next/image";
 export default function Page() {
@@ -9,13 +10,13 @@ export default function Page() {
           src="/hero.webp"
           height="200"
           width="300"
+          priority={false}
           alt="info graphics"
         />
       </div>
       <div className="min-w-full h-36">
         <Form />
       </div>
-
       {/* End of 2 Cols */}
     </div>
   );

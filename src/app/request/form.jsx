@@ -1,7 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import {AiFillCloseCircle} from 'react-icons/ai'
+
+
+
 
 const Form = () => {
+  const errorRef = useRef(null);
+  const [errorvisible,setErrorVisible] = useState(false)
+
+  const [errortext,setErrorText] = useState('');
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,7 +25,7 @@ const Form = () => {
 
   useEffect(() => {
     const spin = document?.getElementById("spinner");
-    const frm = document?.getElementById("form");
+    const frm = document?.getElementById("formx");
     if (loading) {
       spin.style.display = "block";
       frm.style.display = "none";
@@ -27,6 +35,44 @@ const Form = () => {
     }
   }, [loading]);
 
+
+  useEffect(() => {
+    const erdiv = document?.getElementById("erdiv");
+    if (errorvisible) {
+      erdiv.style.position='fixed'
+      document.body.style.overflow='hidden'
+      erdiv.style.display = "flex";
+    } else {
+      document.body.style.overflow='auto'
+      erdiv.style.display = "none";
+    }
+
+  }, [errorvisible])
+  
+  
+  const showErrorModal =(response)=>{
+    if(response.status==410){
+      setErrorText(response.statusText);
+      setErrorVisible(true);
+      return
+    }
+    if(response.status==404){
+      setErrorText(response.statusText);
+      setErrorVisible(true);
+      return
+    }
+    if(response.status==420){
+      setErrorText(response.statusText);
+      setErrorVisible(true);
+      return
+    }
+    if(response.status==430){
+      setErrorText(response.statusText);
+      setErrorVisible(true);
+      return
+    }
+  }
+
   const handleInputChange = (event) => {
     setFormData({
       ...formData,
@@ -34,17 +80,20 @@ const Form = () => {
     });
   };
 
+  const clearform =  ()=>{
+    setFormData({   name: "",
+         email: "",
+         phone: "",
+         suggestion: "",});
+  } 
+
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
-    const iname = document.getElementById("name");
+    
     const errname = document.getElementById("errname");
-    const iemail = document.getElementById("email");
     const errmail = document.getElementById("erremail");
-    const iphone = document.getElementById("phone");
     const errphone = document.getElementById("errphone");
-    const isuggestion = document.getElementById("name");
-    const errsuggestion = document.getElementById("errname");
 
     if (formData.name == null || formData.name.length == 0) {
       errname.style.display = "block";
@@ -60,40 +109,49 @@ const Form = () => {
     }
     errmail.style.display = "none";
 
-    if (formData.phone == null || formData.phone.length == 0) {
+    if (formData.phone == null || formData.phone.length < 10 || formData.phone.length == 0) {
       errphone.style.display = "block";
       setLoading(false);
       return;
     }
     errphone.style.display = "none";
 
-    const res = await fetch("/api/subdmail", {
+    await fetch("/api/subdmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        suggestion: formData.suggestion ? formData.suggestion : "N/A",
+        "name": formData.name,
+        "email": formData.email,
+        "phone": formData.phone,
+        "suggestion": formData.suggestion ? formData.suggestion : "N/A",
       }),
-    }).catch((er) => {
-      setLoading(false);
-      // console.log(er);
-      setLoading(false);
-      return;
-    });
-    iemail.value = "";
-    iphone.value = "";
-    iname.value = "";
-    isuggestion.value = "";
-    setLoading(false);
-    //console.log(res);
+    })
+      .then((ress) => {
+        setLoading(false)
+        showErrorModal(ress);
+         return
+      })
+      .catch((errr) => {
+        console.log(errr);
+        return
+      });
+
+   
   };
 
   return (
     <div className="p-4 m-8 flex flex-grow items-center justify-center">
+
+    {/* Error Modal */}
+
+      <div id='erdiv' className="flex fixed flex-col top-1/2 
+       rounded p-3 items-center gap-3 content-center bg-red-600 text-white">
+        <h1 className="text2xl">{errortext}</h1>
+        <button className="hover:bg-red-500/40" ><AiFillCloseCircle size='30' onClick={()=>setErrorVisible(false)}/></button>
+      </div>
+      {/* Spinner */}
       <div id="spinner" role="status">
         <svg
           aria-hidden="true"
@@ -114,7 +172,7 @@ const Form = () => {
         <h1 className="sr-only">Loading...</h1>
       </div>
       <form
-        id="form"
+        id="formx"
         className="bg-white grow hidden p-6 mb-14 mx-4 
         rounded-lg shadow-inner"
         onSubmit={handleSubmit}

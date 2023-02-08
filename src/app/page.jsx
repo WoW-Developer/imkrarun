@@ -25,6 +25,7 @@ export default function Home() {
             alt="info graphic"
             height="200"
             width="300"
+            priority={false}
             style={{ objectFit: "scale-down" }}
           />
         </div>
@@ -38,6 +39,7 @@ export default function Home() {
             alt="info graphic"
             height="200"
             width="300"
+            priority={false}
             style={{ objectFit: "scale-down" }}
           />
         </div>

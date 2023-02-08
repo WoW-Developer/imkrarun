@@ -2,7 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-.starlabel label:after {
-  content: " *";
-  color: red;
+.starlabel:after {
+    content:" *";
+    color: red;
+  }
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow:  hidden;
+
+}
+
+* {
+    -ms-overflow-style: Safari;  /* Internet Explorer 10+ */
+    scrollbar-width: 2px;  /* Firefox */
+}
+*::-webkit-scrollbar { 
+    width: 2px;  /* Safari and Chrome */
 }

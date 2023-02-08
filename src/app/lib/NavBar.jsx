@@ -7,9 +7,12 @@ const NavBar = () => {
         <h1 className="text-2xl">
           <Link href={"/"}>ARUN</Link>
         </h1>
-        <ul className="flex align-middle items-center text-lg flex-row">
+        <ul className="flex align-middle gap-4 items-center text-lg flex-row">
           <li>
             <Link href={"/Services"}>Sevices</Link>
+          </li>
+          <li>
+            <Link href={"/account"}>Login</Link>
           </li>
         </ul>
       </div>
