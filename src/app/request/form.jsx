@@ -109,7 +109,7 @@ const Form = () => {
     }
     errmail.style.display = "none";
 
-    if (formData.phone == null || formData.phone.length < 10 || formData.phone.length == 0) {
+    if (formData.phone == null || ! formData.phone.length == 10) {
       errphone.style.display = "block";
       setLoading(false);
       return;
@@ -146,10 +146,12 @@ const Form = () => {
 
     {/* Error Modal */}
 
-      <div id='erdiv' className="flex fixed flex-col top-1/2 
+    <div id='erdiv h-screen w-screen bg-white' >
+      <div className="flex fixed flex-col top-1/2 
        rounded p-3 items-center gap-3 content-center bg-red-600 text-white">
         <h1 className="text2xl">{errortext}</h1>
         <button className="hover:bg-red-500/40" ><AiFillCloseCircle size='30' onClick={()=>setErrorVisible(false)}/></button>
+      </div>
       </div>
       {/* Spinner */}
       <div id="spinner" role="status">
