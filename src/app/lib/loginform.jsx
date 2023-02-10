@@ -9,24 +9,23 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase/firebase";
-import { AiFillCloseSquare} from 'react-icons/ai'
-import {BiEraser} from 'react-icons/bi'
-import {FcGoogle} from 'react-icons/fc'
+import { IoCloseCircleSharp } from "react-icons/io5";
+import { BsGoogle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
-  prompt: 'select_account',
-  'login_hint': 'WoW'
+  prompt: "select_account",
+  login_hint: "WoW",
 });
 
 const Form = () => {
   const router = useRouter();
-  const [errorvisible,setErrorVisible] = useState(false)
-  const [errortext,setErrorText] = useState('');
-  const [user,setUser] =useState(false)
-  
+  const [errorvisible, setErrorVisible] = useState(false);
+  const [errortext, setErrorText] = useState("");
+  const [user, setUser] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -42,7 +41,7 @@ const Form = () => {
         //console.log(user);
         // ...
       } else {
-        setUser('');
+        setUser("");
       }
     });
   });
@@ -58,101 +57,102 @@ const Form = () => {
     }
   }, [loading]);
 
-
   useEffect(() => {
     const erdiv = document?.getElementById("erdiv");
     if (errorvisible) {
-      erdiv.style.position='fixed'
-      document.body.style.overflow='hidden'
+      erdiv.style.position = "fixed";
+      document.body.style.overflow = "hidden";
       erdiv.style.display = "flex";
     } else {
-      document.body.style.overflow='auto'
+      document.body.style.overflow = "auto";
       erdiv.style.display = "none";
     }
+  }, [errorvisible]);
 
-  }, [errorvisible])
-  
-  
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
 
-    if(auth.currentUser==null)
-    setPersistence(auth, browserLocalPersistence)
-    .then(async () => {
-      // Existing and future Auth states are now persisted in the current
-      // session only. Closing the window would clear any existing state even
-      // if a user forgets to sign out.
-      // ...
-      // New sign-in will be persisted with session persistence.
-      try {
-        setLoading(true)
-        const result = await signInWithPopup(auth, provider);
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const uid = result.user.uid;
-        if(sessionStorage.getItem("type")=='redirect'){
-          sessionStorage.removeItem("type")
-          router.push('/request')
+    if (auth.currentUser == null)
+      setPersistence(auth, browserLocalPersistence)
+        .then(async () => {
+          // Existing and future Auth states are now persisted in the current
+          // session only. Closing the window would clear any existing state even
+          // if a user forgets to sign out.
+          // ...
+          // New sign-in will be persisted with session persistence.
+          try {
+            setLoading(true);
+            const result = await signInWithPopup(auth, provider);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            const uid = result.user.uid;
+            if (sessionStorage.getItem("type") == "redirect") {
+              sessionStorage.removeItem("type");
+              router.push("/request");
+              setLoading(false);
+              return;
+            }
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            // Handle Errors here.
+            //const errorCode = error.code;
+            //const errorMessage = error.message;
+            // setRealError(errorMessage);
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential_1 = GoogleAuthProvider.credentialFromError(error);
+            setErrorText(error.message);
+            setErrorVisible(true);
+          }
+        })
+        .catch((error) => {
           setLoading(false);
-          return
-        }
-        setLoading(false);        
-      } catch (error) {
-        setLoading(false);
-        // Handle Errors here.
-        //const errorCode = error.code;
-        //const errorMessage = error.message;
-        // setRealError(errorMessage);
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential_1 = GoogleAuthProvider.credentialFromError(error);
-        errorvisible(true);
-        setErrorText(credential_1)
-      }
-
-    })
-    .catch((error) => {
-      setLoading(false);
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      setErrorText(errorMessage);
-        errorvisible(true);
-    });
-    else if(auth.currentUser!=null){
-      signOut(auth).then(()=>{
-      
-        setLoading(false);
-      }).catch((error)=>{
-        console.log(error)
-      });
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorText(errorMessage);
+          setErrorVisible(true);
+        });
+    else if (auth.currentUser != null) {
+      signOut(auth)
+        .then(() => {
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-      };
+  };
 
   return (
-    <div className='p-2 z-30 flex flex-grow items-center justify-center'>
+    <div className="p-2 z-30 flex flex-grow items-center justify-center">
+      {/* Error Modal */}
 
-    {/* Error Modal */}
-
-      <div id='erdiv' className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent">
-        <div className="flex flex-col relative
-       rounded items-center gap-3 content-center bg-red-600 text-white">
-        <div className="justify-end  p-1 flex w-full">
-        <h1 className="textxl right-0 p-1 text-white top-0" onClick={(e)=>{
-          e.preventDefault();
-          setErrorVisible(false)
-        }}>{<BiEraser size={16}/>}</h1>
-        </div>
-        <div className="text-center p-2 pt-0 pb-0">
-        <h1 className="text2xl">{errortext}</h1>
-        <button className="hover:bg-red-900 p-2 rounded-sm" ><AiFillCloseSquare size='30' onClick={()=>setErrorVisible(false)}/></button>
-        </div>
+      <div
+        id="erdiv"
+        className="backdrop-blur-sm p-2 hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent"
+      >
+        <div
+          className="flex flex-col relative
+       rounded-md items-center gap-3 content-center p-4 bg-white/80 text-black"
+        >
+          <div className="text-center flex flex-col items-center justify-center p-2 pt-0 pb-0">
+            <Image src="/error.png" height="100" width="120" alt="error" />
+            <h1 className="text2xl mt-4">{errortext}</h1>
+            <button className="hover:scale-150 p-2 rounded-full">
+              <IoCloseCircleSharp
+                className="rounded-full"
+                size="30"
+                onClick={() => setErrorVisible(false)}
+              />
+            </button>
+          </div>
         </div>
       </div>
-
 
       {/* Spinner */}
       <div id="spinner" role="status">
@@ -175,23 +175,22 @@ const Form = () => {
         <h1 className="sr-only">Loading...</h1>
       </div>
 
-
       {/* Form  Phone Sent */}
       <form
         id="formx"
-        className="bg-white grow hidden p-1 mx-4 
-        rounded-lg shadow-inner outline outline-1 outline-blue-500"
+        className="grow hidden py-2 px-4 mx-4 
+        "
         onSubmit={handleSubmit}
       >
-        <div className="w-full flex flex-row justify-center">
-          <div className="self-center"><FcGoogle/></div>
-          <button className=" self-center font-semibold focus:outline-none text-black py-1 px-2 rounded-sm ">
-        {!user?'Login':'Log-out'}
+        <div className="bg-red-600/95 rounded-lg py-2 px-4 hover:bg-red-600 w-full flex flex-row justify-center">
+          <div className="self-center text-white">
+            <BsGoogle />
+          </div>
+          <button className=" self-center font-semibold focus:outline-none text-white py-1 pl-1 rounded-sm ">
+            {!user ? "Login" : "Log-out"}
           </button>
         </div>
       </form>
-
-
     </div>
   );
 };

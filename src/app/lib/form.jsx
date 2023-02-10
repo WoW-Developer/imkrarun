@@ -1,23 +1,21 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AiFillCloseSquare} from 'react-icons/ai'
-import {BiEraser} from 'react-icons/bi'
+import { AiFillCloseSquare } from "react-icons/ai";
+import { BiEraser } from "react-icons/bi";
 import { Roboto_Flex } from "@next/font/google";
 
 const font = Roboto_Flex({ subsets: ["latin"] });
 
-
 const Form = () => {
-
-  const [errorvisible,setErrorVisible] = useState(false)
-  const [errortext,setErrorText] = useState('');
+  const [errorvisible, setErrorVisible] = useState(false);
+  const [errortext, setErrorText] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     suggestion: "",
   });
- 
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,43 +34,40 @@ const Form = () => {
     }
   }, [loading]);
 
-
   useEffect(() => {
     const erdiv = document?.getElementById("erdiv");
     if (errorvisible) {
-      erdiv.style.position='fixed'
-      document.body.style.overflow='hidden'
+      erdiv.style.position = "fixed";
+      document.body.style.overflow = "hidden";
       erdiv.style.display = "flex";
     } else {
-      document.body.style.overflow='auto'
+      document.body.style.overflow = "auto";
       erdiv.style.display = "none";
     }
+  }, [errorvisible]);
 
-  }, [errorvisible])
-  
-  
-  const showErrorModal =(response)=>{
-    if(response.status==410){
+  const showErrorModal = (response) => {
+    if (response.status == 410) {
       setErrorText(response.statusText);
       setErrorVisible(true);
-      return
+      return;
     }
-    if(response.status==404){
+    if (response.status == 404) {
       setErrorText(response.statusText);
       setErrorVisible(true);
-      return
+      return;
     }
-    if(response.status==420){
+    if (response.status == 420) {
       setErrorText(response.statusText);
       setErrorVisible(true);
-      return
+      return;
     }
-    if(response.status==430){
+    if (response.status == 430) {
       setErrorText(response.statusText);
       setErrorVisible(true);
-      return
+      return;
     }
-  }
+  };
 
   const handleInputChange = (event) => {
     setFormData({
@@ -81,14 +76,13 @@ const Form = () => {
     });
   };
 
-
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
-    
+
     const errname = document.getElementById("errname");
-  const errmail = document.getElementById("erremail");
-  const errphone = document.getElementById("errphone");
+    const errmail = document.getElementById("erremail");
+    const errphone = document.getElementById("errphone");
 
     if (formData.name == null || formData.name.length == 0) {
       errname.style.display = "block";
@@ -117,50 +111,60 @@ const Form = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "name": formData.name,
-        "email": formData.email,
-        "phone": formData.phone,
-        "suggestion": formData.suggestion ? formData.suggestion : "N/A",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        suggestion: formData.suggestion ? formData.suggestion : "N/A",
       }),
     })
       .then((ress) => {
-        setLoading(false)
+        setLoading(false);
         showErrorModal(ress);
-         return
+        return;
       })
       .catch((errr) => {
         console.log(errr);
-        return
+        return;
       });
-
-   
   };
 
   return (
-    <div className={`${font.className} p-4 m-8 mt-0 flex flex-grow items-center justify-center`}>
+    <div
+      className={`${font.className} p-4 m-8 mt-0 flex flex-grow items-center justify-center`}
+    >
+      {/* Error Modal */}
 
-    {/* Error Modal */}
-
-      <div id='erdiv' className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent">
-        <div className="flex flex-col relative
-       rounded items-center gap-3 content-center bg-red-600 text-white">
-        <div className="justify-end  p-1 flex w-full">
-        <h1 className="textxl right-0 p-1 text-white top-0" onClick={(e)=>{
-          e.preventDefault();
-          setFormData({name: "",
-          email: "",
-          phone: "",
-          suggestion: "",});
-          setErrorVisible(false)
-        }}>{<BiEraser size={16}/>}</h1>
-        </div>
-        <div className="text-center p-2 pt-0 pb-0">
-        <h1 className="text2xl">{errortext}</h1>
-        <button className="hover:bg-red-900 p-2 rounded-sm" ><AiFillCloseSquare size='30' onClick={()=>setErrorVisible(false)}/></button>
-        </div>
+      <div
+        id="erdiv"
+        className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent"
+      >
+        <div
+          className="flex flex-col relative
+       rounded items-center gap-3 content-center bg-red-600 text-white"
+        >
+          <div className="justify-end  p-1 flex w-full">
+            <h1
+              className="textxl right-0 p-1 text-white top-0"
+              onClick={(e) => {
+                e.preventDefault();
+                setFormData({ name: "", email: "", phone: "", suggestion: "" });
+                setErrorVisible(false);
+              }}
+            >
+              {<BiEraser size={16} />}
+            </h1>
+          </div>
+          <div className="text-center p-2 pt-0 pb-0">
+            <h1 className="text2xl">{errortext}</h1>
+            <button className="hover:bg-red-900 p-2 rounded-sm">
+              <AiFillCloseSquare
+                size="30"
+                onClick={() => setErrorVisible(false)}
+              />
+            </button>
+          </div>
         </div>
       </div>
-
 
       {/* Spinner */}
       <div id="spinner" role="status">
@@ -183,37 +187,36 @@ const Form = () => {
         <h1 className="sr-only">Loading...</h1>
       </div>
 
-
       {/* Form */}
       <form
         id="formx"
-        className="bg-white grow hidden p-4 pb-2 mb-14 mx-4 
-        rounded-lg shadow-inner outline outline-1 outline-blue-500"
+        className="bg-white/10 grow hidden p-4 pb-2 mb-14 mx-4 
+        rounded-lg shadow-inner outline outline-0 outline-white text-white"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="name">
+          <label className="block text-white font-medium mb-2" htmlFor="name">
             Name
           </label>
           <input
             autoComplete="off"
-            className="w-full starlabel focus:outline focus:outline-blue-700 form-input border rounded border-blue-500 p-2"
+            className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded border-white/50 p-2"
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
           />
-          <h1 id="errname" className="text-sm text-red-500 hidden pt-1">
+          <h1 id="errname" className="text-sm text-red-800 hidden pt-1">
             Enter Name
           </h1>
         </div>
         <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="email">
+          <label className="block text-white font-medium mb-2" htmlFor="email">
             Email
           </label>
           <input
-            className="w-full starlabel  form-input border rounded focus:outline focus:outline-blue-700   border-blue-500 p-2"
+            className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80  border-white/50 p-2"
             type="email"
             autoComplete="off"
             id="email"
@@ -221,58 +224,57 @@ const Form = () => {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <h1 id="erremail" className="text-sm text-red-500 hidden pt-1">
+          <h1 id="erremail" className="text-sm text-red-800 hidden pt-1">
             Enter Valid Email
           </h1>
         </div>
         <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="phone">
+          <label className="block text-white font-medium mb-2" htmlFor="phone">
             Phone
           </label>
-          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-blue-500 p-2 align-middle">
-            <h1 className="self-center pointer-events-none text-gray-400/70">+91</h1>
-          <input
-            className=" w-full form-input pl-2 outline-none focus:outline-none"
-            type="tel"
-            id="phone"
-            autoComplete="off"
-            name="phone"
-            value={formData.phone}
-            onChange={
-              (e)=>{
-                e.preventDefault()
-                if(!e.target?.value.match('^[0-9]*$')){
-                  document.getElementById('erriphone').style.display = "block";
-                  return
+          <div className="flex border w-full focus:outline-white/80  border-white/50 flex-row rounded focus:outline  p-2 align-middle">
+            <h1 className="self-center pointer-events-none text-gray-400/70">
+              +91
+            </h1>
+            <input
+              className=" w-full bg-transparent form-input pl-2 outline-none focus:outline-none"
+              type="tel"
+              id="phone"
+              autoComplete="off"
+              name="phone"
+              value={formData.phone}
+              onChange={(e) => {
+                e.preventDefault();
+                if (!e.target?.value.match("^[0-9]*$")) {
+                  document.getElementById("erriphone").style.display = "block";
+                  return;
                 }
-                document.getElementById('erriphone').style.display = "none";
-               
-                if(e.target.value.length==10){
-                  document.getElementById('erriphone').style.display = "none";
-                  return
-                }
-                handleInputChange(e)
+                document.getElementById("erriphone").style.display = "none";
 
+                if (e.target.value.length == 10) {
+                  document.getElementById("erriphone").style.display = "none";
+                  return;
+                }
+                handleInputChange(e);
               }}
-              
-          />
+            />
           </div>
-          <h1 id="errphone" className="text-sm text-red-500 hidden pt-1">
+          <h1 id="errphone" className="text-sm text-red-800 hidden pt-1">
             Enter Valid Phone
           </h1>
-          <h1 id="erriphone" className="text-sm text-red-500 hidden pt-1">
+          <h1 id="erriphone" className="text-sm text-red-800 hidden pt-1">
             Only Numerical Values
           </h1>
         </div>
         <div className="mb-4">
           <label
-            className="block text-black font-medium mb-2"
+            className="block text-white font-medium mb-2"
             htmlFor="suggestion"
           >
             Suggestion
           </label>
           <textarea
-            className="w-full border focus:outline focus:outline-blue-700  resize-none h-40 rounded form-input border-blue-500 p-2"
+            className="w-full border bg-transparent outline-white/50 focus:outline-white/80  resize-none h-40 rounded form-input border-blue-500 p-2"
             id="suggestion"
             name="suggestion"
             autoComplete="off"
@@ -281,16 +283,15 @@ const Form = () => {
           />
           <h1
             id="errsuggestion"
-            className="text-sm text-red-500 block pt-1"
+            className="text-sm text-red-800 block pt-1"
           ></h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-blue-600 self-center focus:outline focus:outline-blue-600  text-white py-2 px-4 rounded-full hover:bg-blue-600">
+          <button className="bg-red-600/95 rounded-md self-center focus:outline focus:outline-blue-600  text-white py-2 px-4  hover:bg-red-600">
             Submit
           </button>
         </div>
       </form>
-
     </div>
   );
 };
