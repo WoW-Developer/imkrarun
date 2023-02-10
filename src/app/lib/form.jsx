@@ -1,14 +1,15 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import {AiFillCloseCircle} from 'react-icons/ai'
+import React, { useEffect, useState } from "react";
+import { AiFillCloseSquare} from 'react-icons/ai'
+import {BiEraser} from 'react-icons/bi'
+import { Roboto_Flex } from "@next/font/google";
 
-
+const font = Roboto_Flex({ subsets: ["latin"] });
 
 
 const Form = () => {
-  const errorRef = useRef(null);
-  const [errorvisible,setErrorVisible] = useState(false)
 
+  const [errorvisible,setErrorVisible] = useState(false)
   const [errortext,setErrorText] = useState('');
   const [formData, setFormData] = useState({
     name: "",
@@ -16,7 +17,7 @@ const Form = () => {
     phone: "",
     suggestion: "",
   });
-
+ 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -80,20 +81,14 @@ const Form = () => {
     });
   };
 
-  const clearform =  ()=>{
-    setFormData({   name: "",
-         email: "",
-         phone: "",
-         suggestion: "",});
-  } 
 
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
     
     const errname = document.getElementById("errname");
-    const errmail = document.getElementById("erremail");
-    const errphone = document.getElementById("errphone");
+  const errmail = document.getElementById("erremail");
+  const errphone = document.getElementById("errphone");
 
     if (formData.name == null || formData.name.length == 0) {
       errname.style.display = "block";
@@ -109,7 +104,7 @@ const Form = () => {
     }
     errmail.style.display = "none";
 
-    if (formData.phone == null || formData.phone.length < 10 || formData.phone.length == 0) {
+    if (formData.phone == null || !formData.phone.length == 10) {
       errphone.style.display = "block";
       setLoading(false);
       return;
@@ -142,15 +137,31 @@ const Form = () => {
   };
 
   return (
-    <div className="p-4 m-8 flex flex-grow items-center justify-center">
+    <div className={`${font.className} p-4 m-8 mt-0 flex flex-grow items-center justify-center`}>
 
     {/* Error Modal */}
 
-      <div id='erdiv' className="flex fixed flex-col top-1/2 
-       rounded p-3 items-center gap-3 content-center bg-red-600 text-white">
+      <div id='erdiv' className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent">
+        <div className="flex flex-col relative
+       rounded items-center gap-3 content-center bg-red-600 text-white">
+        <div className="justify-end  p-1 flex w-full">
+        <h1 className="textxl right-0 p-1 text-white top-0" onClick={(e)=>{
+          e.preventDefault();
+          setFormData({name: "",
+          email: "",
+          phone: "",
+          suggestion: "",});
+          setErrorVisible(false)
+        }}>{<BiEraser size={16}/>}</h1>
+        </div>
+        <div className="text-center p-2 pt-0 pb-0">
         <h1 className="text2xl">{errortext}</h1>
-        <button className="hover:bg-red-500/40" ><AiFillCloseCircle size='30' onClick={()=>setErrorVisible(false)}/></button>
+        <button className="hover:bg-red-900 p-2 rounded-sm" ><AiFillCloseSquare size='30' onClick={()=>setErrorVisible(false)}/></button>
+        </div>
+        </div>
       </div>
+
+
       {/* Spinner */}
       <div id="spinner" role="status">
         <svg
@@ -171,10 +182,13 @@ const Form = () => {
         </svg>
         <h1 className="sr-only">Loading...</h1>
       </div>
+
+
+      {/* Form */}
       <form
         id="formx"
-        className="bg-white grow hidden p-6 mb-14 mx-4 
-        rounded-lg shadow-inner"
+        className="bg-white grow hidden p-4 pb-2 mb-14 mx-4 
+        rounded-lg shadow-inner outline outline-1 outline-blue-500"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
@@ -183,7 +197,7 @@ const Form = () => {
           </label>
           <input
             autoComplete="off"
-            className="w-full starlabel focus:outline focus:outline-blue-500 form-input border rounded border-gray-300 p-2"
+            className="w-full starlabel focus:outline focus:outline-blue-700 form-input border rounded border-blue-500 p-2"
             type="text"
             id="name"
             name="name"
@@ -199,7 +213,7 @@ const Form = () => {
             Email
           </label>
           <input
-            className="w-full starlabel  form-input border rounded focus:outline focus:outline-blue-500   border-gray-300 p-2"
+            className="w-full starlabel  form-input border rounded focus:outline focus:outline-blue-700   border-blue-500 p-2"
             type="email"
             autoComplete="off"
             id="email"
@@ -215,17 +229,39 @@ const Form = () => {
           <label className="block text-black font-medium mb-2" htmlFor="phone">
             Phone
           </label>
+          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-blue-500 p-2 align-middle">
+            <h1 className="self-center pointer-events-none text-gray-400/70">+91</h1>
           <input
-            className="w-full starlabel border form-input rounded focus:outline focus:outline-blue-500  border-gray-300 p-2"
+            className=" w-full form-input pl-2 outline-none focus:outline-none"
             type="tel"
             id="phone"
             autoComplete="off"
             name="phone"
             value={formData.phone}
-            onChange={handleInputChange}
+            onChange={
+              (e)=>{
+                e.preventDefault()
+                if(!e.target?.value.match('^[0-9]*$')){
+                  document.getElementById('erriphone').style.display = "block";
+                  return
+                }
+                document.getElementById('erriphone').style.display = "none";
+               
+                if(e.target.value.length==10){
+                  document.getElementById('erriphone').style.display = "none";
+                  return
+                }
+                handleInputChange(e)
+
+              }}
+              
           />
+          </div>
           <h1 id="errphone" className="text-sm text-red-500 hidden pt-1">
             Enter Valid Phone
+          </h1>
+          <h1 id="erriphone" className="text-sm text-red-500 hidden pt-1">
+            Only Numerical Values
           </h1>
         </div>
         <div className="mb-4">
@@ -236,7 +272,7 @@ const Form = () => {
             Suggestion
           </label>
           <textarea
-            className="w-full border focus:outline focus:outline-blue-500  resize-none h-40 rounded form-input border-gray-300 p-2"
+            className="w-full border focus:outline focus:outline-blue-700  resize-none h-40 rounded form-input border-blue-500 p-2"
             id="suggestion"
             name="suggestion"
             autoComplete="off"
@@ -249,11 +285,12 @@ const Form = () => {
           ></h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-blue-500 self-center focus:outline focus:outline-blue-500  text-white py-2 px-4 rounded-full hover:bg-blue-600">
+          <button className="bg-blue-600 self-center focus:outline focus:outline-blue-600  text-white py-2 px-4 rounded-full hover:bg-blue-600">
             Submit
           </button>
         </div>
       </form>
+
     </div>
   );
 };
