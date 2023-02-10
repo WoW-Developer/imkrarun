@@ -7,6 +7,14 @@
     color: red;
   }
 
+  /* .bgrt{
+    background-image: url('/BGSvG.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+} */
+
+
 html, body {
     margin: 0;
     height: 100%;

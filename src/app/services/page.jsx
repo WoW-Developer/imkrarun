@@ -8,7 +8,8 @@ const Page = () => {
         <div className=" flex flex-col gap-3 items-start text-black p-4 justify-start">
           <div className="rounded-md bg-white shadow-black p-3 shadow-sm">
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-lg sm:text-xl">
+
+              <h1 className="text-lg sm:text-xl mt-4">
                 Are you looking for a tutor who can help your child excel in
                 their studies? My private tuition services provide your child
                 with the personalized attention and guidance to ensure they
@@ -19,8 +20,11 @@ const Page = () => {
                 in their exams. Contact me today to get your child on the path
                 to success!
               </h1>
-              <div className="rounded-md flex bg-blue-600 text-base text-white p-2 m-2">
+              <div className="flex flex-row-reverse w-full justify-between">
+              <div className="rounded-md flex h-fit self-center bg-blue-600 text-base text-white p-2 m-2">
                 <Link href={"/request"}>Book A Demo</Link>
+              </div>
+              <h1 className="self-center">📚📜📝</h1>
               </div>
             </div>
           </div>
