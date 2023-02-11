@@ -4,7 +4,8 @@ export default function Head() {
       <title>imkrarun</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="I am your maths mentor" />
-      <link rel="icon" href="/favicon.ico" />
+      <meta name="theme-color" content="#4285f4" />
+<link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
