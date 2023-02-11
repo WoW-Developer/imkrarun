@@ -4,7 +4,6 @@ export default function Head() {
       <title>imkrarun</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="I am your maths mentor" />
-      <meta name="theme-color" content="#0d47a1" />
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d47a1">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d47a1">
 
