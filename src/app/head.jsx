@@ -5,6 +5,9 @@ export default function Head() {
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="I am your maths mentor" />
       <meta name="theme-color" content="#0d47a1" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#0d47a1">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0d47a1">
+
 <link rel="icon" href="/favicon.ico" />
       <link
         rel="apple-touch-icon"
@@ -28,7 +31,6 @@ export default function Head() {
       <meta name="apple-mobile-web-app-title" content="Kr Arun" />
       <meta name="application-name" content="Kr Arun" />
       <meta name="msapplication-TileColor" content="#000" />
-      <meta name="theme-color" content="#000" />
     </>
   );
 }
