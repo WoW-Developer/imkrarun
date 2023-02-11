@@ -3,24 +3,27 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiFillCloseCircle, AiOutlineMenu } from "react-icons/ai";
+import { NavLinkComp } from './NavLinkComp';
+
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
 
   return (
     <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-white shadow shadow-white/30 bg-blue-800 ">
       <div className=" w-full max-w-[800px] justify-between flex-row flex">
-        <h1 className="text-2xl self-center hover:bg-white/30 p-1 rounded">
-          <Link href={"/"}>ARUN</Link>
+        <h1 className="text-2xl self-center">
+          <NavLinkComp className="hover:bg-white/30 p-2 self-center rounded" slug={''}>ARUN</NavLinkComp>
+
         </h1>
 
         {/* DeskTop Menu */}
         <div className="hidden sm:flex">
           <ul className="flex align-middle gap-4 items-center text-lg flex-row">
             <li>
-              <Link className="hover:bg-white/30 text-xl p-2 self-center rounded" href={"/services"}>Sevices</Link>
+              <NavLinkComp className="hover:bg-white/30 text-xl p-2 self-center rounded" slug={'services'}>Services</NavLinkComp>
             </li>
             <li>
-              <Link className="hover:bg-white/30 text-xl self-center p-2 rounded" href={"/account"}>Profile</Link>
+              <NavLinkComp className="hover:bg-white/30 text-xl p-2 self-center rounded" slug={'account'}>Profile</NavLinkComp>
             </li>
           </ul>
         </div>
@@ -44,10 +47,10 @@ const NavBar = () => {
           <div className="flex h-full w-full items-center gap-2 text-xl justify-center">
             <ul>
               <li onClick={() => setVisible(!visible)}>
-                <Link className="p-2"  href={"/services"}>Services</Link>
-              </li>
+              <NavLinkComp className="p-2" slug={'services'}>Services</NavLinkComp>
+                </li>
               <li onClick={() => setVisible(!visible)}>
-                <Link  className="p-2"  href={"/account"}>Profile</Link>
+              <NavLinkComp className="p-2" slug={'account'}>Profile</NavLinkComp>
               </li>
             </ul>
           </div>
