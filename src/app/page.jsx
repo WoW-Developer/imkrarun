@@ -35,7 +35,7 @@ export default function Home() {
         {/* End of 2 Cols */}
       </div>
       <h1 className="text-white whitespace-pre-wrap select-none text-xl p-2 mt-28">
-        Dear Students / Parents,{"\n"}Are you or your child struggling with
+        Dear Students / Parents,{"\n"}{"\n"}Are you or your child struggling with
         mathematics and in need of a tutor who can help improve their
         understanding and confidence in the subject?{"\n"}{"\n"}If so, I am here to help! I
         am a highly experienced and qualified mathematics tutor with a passion
