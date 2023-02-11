@@ -17,9 +17,6 @@ export default function Home() {
             tutor helping students learn and understand the fundamentals of
             maths. Let me help unlock your potential!
           </h1>
-          <div className="rounded-md flex bg-red-600/95 hover:bg-red-600 text-base text-white p-2 mt-8 mb-0">
-            <Link href={"/request"}>Book A Demo</Link>
-          </div>
         </div>
 
         {/* 2nd Col */}
@@ -59,6 +56,10 @@ export default function Home() {
         schedule your first session. I look forward to helping you achieve your
         academic and personal goals!
       </h1>
+
+      <div className="rounded-md w-fit self-center flex bg-red-600/95 hover:bg-red-600 text-base text-white p-2 mt-8 mb-0">
+            <Link href={"/request"}>Book A Demo</Link>
+          </div>
       <Footer />
     </div>
   );

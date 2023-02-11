@@ -16,11 +16,11 @@ const NavBar = () => {
         {/* DeskTop Menu */}
         <div className="hidden sm:flex">
           <ul className="flex align-middle gap-4 items-center text-lg flex-row">
-            <li className="hover:bg-white/30 text-xl p-2 self-center rounded">
-              <Link href={"/services"}>Sevices</Link>
+            <li>
+              <Link className="hover:bg-white/30 text-xl p-2 self-center rounded" href={"/services"}>Sevices</Link>
             </li>
-            <li className="hover:bg-white/30 text-xl self-center p-2 rounded">
-              <Link href={"/account"}>Profile</Link>
+            <li>
+              <Link className="hover:bg-white/30 text-xl self-center p-2 rounded" href={"/account"}>Profile</Link>
             </li>
           </ul>
         </div>
@@ -43,11 +43,11 @@ const NavBar = () => {
         <div className={visible ? show : hide}>
           <div className="flex h-full w-full items-center gap-2 text-xl justify-center">
             <ul>
-              <li className="p-2" onClick={() => setVisible(!visible)}>
-                <Link href={"/services"}>Services</Link>
+              <li onClick={() => setVisible(!visible)}>
+                <Link className="p-2"  href={"/services"}>Services</Link>
               </li>
-              <li className="p-2" onClick={() => setVisible(!visible)}>
-                <Link href={"/account"}>Profile</Link>
+              <li onClick={() => setVisible(!visible)}>
+                <Link  className="p-2"  href={"/account"}>Profile</Link>
               </li>
             </ul>
           </div>
