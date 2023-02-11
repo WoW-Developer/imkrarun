@@ -1,24 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { AiFillCloseSquare} from 'react-icons/ai'
-import {BiEraser} from 'react-icons/bi'
+import { AiFillCloseSquare } from "react-icons/ai";
+import { BiEraser } from "react-icons/bi";
 import { Roboto_Flex } from "@next/font/google";
 
-import {auth} from '../firebase/firebase'
-import { RecaptchaVerifier,signInWithPhoneNumber} from "firebase/auth";
+import { auth } from "../firebase/firebase";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 const font = Roboto_Flex({ subsets: ["latin"] });
 
-
-
-
 const Form = () => {
+  const [errorvisible, setErrorVisible] = useState(false);
+  const [errortext, setErrorText] = useState("");
+  const [phone, setPhone] = useState("");
+  const [otp, setOTP] = useState("");
 
-  const [errorvisible,setErrorVisible] = useState(false)
-  const [errortext,setErrorText] = useState('');
-  const [phone,setPhone] = useState('')
-  const [otp,setOTP] =useState('')
- 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -37,21 +33,17 @@ const Form = () => {
     }
   }, [loading]);
 
-
   useEffect(() => {
     const erdiv = document?.getElementById("erdiv");
     if (errorvisible) {
-      erdiv.style.position='fixed'
-      document.body.style.overflow='hidden'
+      erdiv.style.position = "fixed";
+      document.body.style.overflow = "hidden";
       erdiv.style.display = "flex";
     } else {
-      document.body.style.overflow='auto'
+      document.body.style.overflow = "auto";
       erdiv.style.display = "none";
     }
-
-  }, [errorvisible])
-  
-  
+  }, [errorvisible]);
 
   const handleInputPHONEChange = (event) => {
     setPhone(event.target.value);
@@ -60,21 +52,23 @@ const Form = () => {
     setPhone(event.target.value);
   };
 
-  const handleOTP = async (event) =>{
+  const handleOTP = async (event) => {
     setLoading(true);
     event.preventDefault();
-    confirmationResult.confirm(otp).then((result) => {
-      // User signed in successfully.
-      const user = result.user;
-      console.log('login pass')
-      // ...
-    }).catch((error) => {
-      // User couldn't sign in (bad verification code?)
-      // ...
-      console.log(error.message)
-    });
-    
-  }
+    confirmationResult
+      .confirm(otp)
+      .then((result) => {
+        // User signed in successfully.
+        const user = result.user;
+        console.log("login pass");
+        // ...
+      })
+      .catch((error) => {
+        // User couldn't sign in (bad verification code?)
+        // ...
+        console.log(error.message);
+      });
+  };
 
   const handleSubmit = async (event) => {
     setLoading(true);
@@ -88,48 +82,64 @@ const Form = () => {
     }
     errphone.style.display = "none";
 
-    window.recaptchaVerifier = new RecaptchaVerifier('AVC', {}, auth);
+    window.recaptchaVerifier = new RecaptchaVerifier("AVC", {}, auth);
     submitPhoneNumberAuth();
   };
 
-  const submitPhoneNumberAuth=(response)=>{
+  const submitPhoneNumberAuth = (response) => {
     console.log(response);
 
     var appVerifier = window.recaptchaVerifier;
 
     signInWithPhoneNumber(auth, phone, appVerifier)
-    .then((confirmationResult) => {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      // user in with confirmationResult.confirm(code).
-      window.confirmationResult = confirmationResult;
-      // ...
-    }).catch((error) => {
-      // Error; SMS not sent
-      // ...
-    });
-  }
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+        // ...
+      })
+      .catch((error) => {
+        // Error; SMS not sent
+        // ...
+      });
+  };
 
   return (
-    <div className={`${font.className} p-2 flex flex-grow items-center justify-center`}>
+    <div
+      className={`${font.className} p-2 flex flex-grow items-center justify-center`}
+    >
+      {/* Error Modal */}
 
-    {/* Error Modal */}
-
-      <div id='erdiv' className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent">
-        <div className="flex flex-col relative
-       rounded items-center gap-3 content-center bg-red-600 text-white">
-        <div className="justify-end  p-1 flex w-full">
-        <h1 className="textxl right-0 p-1 text-white top-0" onClick={(e)=>{
-          e.preventDefault();
-          setErrorVisible(false)
-        }}>{<BiEraser size={16}/>}</h1>
-        </div>
-        <div className="text-center p-2 pt-0 pb-0">
-        <h1 className="text2xl">{errortext}</h1>
-        <button className="hover:bg-red-900 p-2 rounded-sm" ><AiFillCloseSquare size='30' onClick={()=>setErrorVisible(false)}/></button>
-        </div>
+      <div
+        id="erdiv"
+        className="backdrop-blur-sm hidden ease-in-out duration-300 z-50 top-0 justify-center items-center left-0 w-full h-full bg-transparent"
+      >
+        <div
+          className="flex flex-col relative
+       rounded items-center gap-3 content-center bg-red-600 text-black"
+        >
+          <div className="justify-end  p-1 flex w-full">
+            <h1
+              className="textxl right-0 p-1 text-black top-0"
+              onClick={(e) => {
+                e.preventDefault();
+                setErrorVisible(false);
+              }}
+            >
+              {<BiEraser size={16} />}
+            </h1>
+          </div>
+          <div className="text-center p-2 pt-0 pb-0">
+            <h1 className="text2xl">{errortext}</h1>
+            <button className="hover:bg-red-900 p-2 rounded-sm">
+              <AiFillCloseSquare
+                size="30"
+                onClick={() => setErrorVisible(false)}
+              />
+            </button>
+          </div>
         </div>
       </div>
-
 
       {/* Spinner */}
       <div id="spinner" role="status">
@@ -152,7 +162,6 @@ const Form = () => {
         <h1 className="sr-only">Loading...</h1>
       </div>
 
-
       {/* Form  Phone Sent */}
       <form
         id="formx"
@@ -161,36 +170,38 @@ const Form = () => {
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="block text-black font-medium text-md mb-2" htmlFor="phone">
+          <label
+            className="block text-black font-medium text-md mb-2"
+            htmlFor="phone"
+          >
             Phone
           </label>
-          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-blue-500 p-2 align-middle">
-            <h1 className="self-center pointer-events-none text-gray-400/70">+91</h1>
-          <input
-            className=" w-full form-input pl-2 outline-none focus:outline-none"
-            type="tel"
-            id="phone"
-            autoComplete="off"
-            name="phone"
-            value={phone}
-            onChange={
-              (e)=>{
-                e.preventDefault()
-                if(!e.target?.value.match('^[0-9]*$')){
-                  document.getElementById('erriphone').style.display = "block";
-                  return
+          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-black p-2 align-middle">
+            <h1 className="self-center pointer-events-none text-gray-400/70">
+              +91
+            </h1>
+            <input
+              className=" w-full form-input pl-2 outline-none focus:outline-none"
+              type="tel"
+              id="phone"
+              autoComplete="off"
+              name="phone"
+              value={phone}
+              onChange={(e) => {
+                e.preventDefault();
+                if (!e.target?.value.match("^[0-9]*$")) {
+                  document.getElementById("erriphone").style.display = "block";
+                  return;
                 }
-                document.getElementById('erriphone').style.display = "none";
-               
-                if(e.target.value.length==11){
-                  document.getElementById('erriphone').style.display = "none";
-                  return
-                }
-                handleInputPHONEChange(e)
+                document.getElementById("erriphone").style.display = "none";
 
+                if (e.target.value.length == 11) {
+                  document.getElementById("erriphone").style.display = "none";
+                  return;
+                }
+                handleInputPHONEChange(e);
               }}
-              
-          />
+            />
           </div>
           <h1 id="errphone" className="text-sm text-red-500 hidden pt-1">
             Enter Valid Phone
@@ -200,47 +211,46 @@ const Form = () => {
           </h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-blue-600 self-center focus:outline focus:outline-blue-600  text-white py-1 px-2 rounded-sm hover:bg-blue-600">
+          <button className="bg-white self-center focus:outline focus:outline-blue-600  text-black py-1 px-2 rounded-sm hover:bg-white">
             Submit
           </button>
         </div>
       </form>
 
-       {/* Form  OTP Sub */}
-       <form
+      {/* Form  OTP Sub */}
+      <form
         id="formOTPx"
         className="bg-white grow hidden p-4 mx-4 
         rounded-lg shadow-inner outline outline-1 outline-blue-500"
         onSubmit={handleOTP}
       >
         <div className="mb-4">
-          <label className="block text-black font-medium text-md mb-2" htmlFor="otp">
+          <label
+            className="block text-black font-medium text-md mb-2"
+            htmlFor="otp"
+          >
             OTP
           </label>
-          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-blue-500 p-2 align-middle">
-          <input
-            className=" w-full form-input outline-none focus:outline-none"
-            id="otp"
-            autoComplete="off"
-            name="otp"
-            value={otp}
-            onChange={
-                handleInputOTPChange}
-              
-          />
+          <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-black p-2 align-middle">
+            <input
+              className=" w-full form-input outline-none focus:outline-none"
+              id="otp"
+              autoComplete="off"
+              name="otp"
+              value={otp}
+              onChange={handleInputOTPChange}
+            />
           </div>
           <h1 id="errvphone" className="text-sm text-red-500 hidden pt-1">
             Enter Valid OTP
           </h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-blue-600 self-center focus:outline focus:outline-blue-600  text-white py-1 px-2 rounded-sm hover:bg-blue-600">
+          <button className="bg-white self-center focus:outline focus:outline-blue-600  text-black py-1 px-2 rounded-sm hover:bg-white">
             Submit
           </button>
         </div>
       </form>
-
-
     </div>
   );
 };

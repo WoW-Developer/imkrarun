@@ -1,11 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Form from "../lib/form";
-import { auth } from "../firebase/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Footer from "../lib/footer";
+import { app } from "../firebase/firebase";
+
+const auth = getAuth(app);
 
 export default function Page() {
   const router = useRouter();
@@ -72,7 +74,7 @@ export default function Page() {
             priority={false}
             alt="info graphics"
           />
-          <h1 className="text-lg text-white">
+          <h1 className="text-lg text-black">
             Please Fill this form for an Enquiry
           </h1>
         </div>

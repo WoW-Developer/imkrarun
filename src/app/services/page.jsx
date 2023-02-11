@@ -7,7 +7,7 @@ const Page = () => {
     <div className="min-h-screen flex flex-col w-full max-w-[900px] mx-auto">
       <div className="flex flex-col-reverse h-full pt-14 p-4 items-center my-auto sm:flex-row-reverse">
         <div className=" flex flex-col gap-3 items-start p-4 justify-start">
-          <h1 className="text-white text-2xl mt-14 self-center p-2">
+          <h1 className="text-black dark:text-white text-2xl mt-14 self-center p-2">
             What we Offer?
           </h1>
           {/* 1st Div */}
@@ -20,12 +20,12 @@ const Page = () => {
                 alt="studious Child"
               />
             </div>
-            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit bg-white/10 rounded">
+            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit bg-black/10 dark:bg-white/10 rounded">
               <div>
-                <h1 className="text-white p-1 mb-4 text-right text-xl">
+                <h1 className="text-black dark:text-white p-1 mb-4 text-right text-xl">
                   One to One Tution 📚
                 </h1>
-                <h1 className="text-white text-right text-lg">
+                <h1 className="text-black dark:text-white text-right text-lg">
                   One-to-one tutoring is a personalized educational experience
                   where a student receives individualized attention and
                   instruction from a single teacher. The teacher works with the
@@ -48,12 +48,12 @@ const Page = () => {
                 alt="studious Child"
               />
             </div>
-            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit bg-white/10 rounded">
+            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit bg-black/10 dark:bg-white/10 rounded">
               <div>
-                <h1 className="text-white p-1 mb-4 text-left text-xl">
+                <h1 className="text-black dark:text-white p-1 mb-4 text-left text-xl">
                   Group Tution 📚
                 </h1>
-                <h1 className="text-white text-left text-lg">
+                <h1 className="text-black dark:text-white text-left text-lg">
                   Group tutoring is a cost-effective and interactive way of
                   learning that offers students the benefits of personal
                   attention and collaboration with their peers. In a group
@@ -81,12 +81,12 @@ const Page = () => {
                 alt="studious Child"
               />
             </div>
-            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit bg-white/10 rounded">
+            <div className="w-full sm:w-1/2 p-2 gap-2 self-end h-fit dark:bg-white/10 bg-black/10 rounded">
               <div>
-                <h1 className="text-white p-1 mb-4 text-right text-xl">
+                <h1 className="text-black dark:text-white p-1 mb-4 text-right text-xl">
                   Book a Session Now 📚
                 </h1>
-                <h1 className="text-white text-right text-lg">
+                <h1 className="text-black dark:text-white text-right text-lg">
                   Are you looking to experience the benefits of personalized
                   education for yourself or for someone you know? Booking a demo
                   session is a great way to see the impact that one-to-one
@@ -106,7 +106,7 @@ const Page = () => {
                 </h1>
                 <div className=" w-full flex justify-end mt-3 p-1">
                   <Link
-                    className="bg-red-600/95 hover:bg-red-600 hover:text-white font-semibold rounded-md text-base text-white p-2 "
+                    className="bg-blue-600/95 hover:bg-blue-600 hover:text-white font-semibold rounded-md text-base text-white p-2 "
                     href={"/request"}
                   >
                     Book A Demo
@@ -116,21 +116,6 @@ const Page = () => {
             </div>
           </div>
           {/* 3rd Div End */}
-
-          {/* Last Div */}
-          {/* <div className="rounded-md mt-14 mb-12 bg-white/10 p-3 ">
-            <div className="flex flex-col text-white m-2 items-center justify-center">
-              <h1 className="text-lg sm:text-xl mt-4"></h1>
-              <div className="flex flex-row-reverse w-full justify-between">
-                <div className="rounded-md flex h-fit self-center bg-red-600 text-base text-white p-2 m-2">
-                  <Link href={"/request"}>Book A Demo</Link>
-                </div>
-                <h1 className="self-center">📚📜📝</h1>
-              </div>
-            </div>
-          </div> */}
-
-          {/* Last Div End */}
         </div>
       </div>
       <Footer />
