@@ -7,7 +7,7 @@ const NavBar = () => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-white shadow shadow-cyan-600 bg-blue-800 ">
+    <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-white shadow shadow-white/30 bg-blue-800 ">
       <div className=" w-full max-w-[800px] justify-between flex-row flex">
         <h1 className="text-2xl self-center hover:bg-white/30 p-1 rounded">
           <Link href={"/"}>ARUN</Link>
