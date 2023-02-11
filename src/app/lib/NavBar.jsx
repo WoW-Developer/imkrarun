@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AiFillCloseCircle, AiOutlineMenu } from "react-icons/ai";
-import { NavLinkComp } from './NavLinkComp';
+import  NavLinkComp  from './NavLinkComp';
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
