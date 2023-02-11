@@ -11,10 +11,10 @@ export default function NavLinkComp({
   // Navigating to `/blog/hello-world` will return 'hello-world'
   // for the selected layout segment
   const segment = useSelectedLayoutSegment();
-  const isActive = slug === segment?segment:'';
+  const isActive = slug === segment;
 
   return (
-    <Link
+    <Link 
       href={`/${slug}`}
       // Change style depending on whether the link is active
       style={{ fontWeight: isActive ? 'bold' : 'normal' }}
