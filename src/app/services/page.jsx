@@ -73,9 +73,9 @@ const Page = () => {
 
           {/* 3rd Div */}
           <div className="flex mt-14 w-full flex-col sm:flex-row">
-            <div className="sm:w-1/2 w-full flex items-center justify-center">
+            <div className="sm:w-1/2 w-full mb-8 sm:mb-0  flex items-center justify-center">
               <Image
-                src="/books.png"
+                src="/exam.png"
                 width="200"
                 height="300"
                 alt="studious Child"
