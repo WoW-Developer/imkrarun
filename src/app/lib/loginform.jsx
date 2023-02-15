@@ -6,7 +6,6 @@ import {
   setPersistence,
   onAuthStateChanged,
   indexedDBLocalPersistence,
-  getAuth,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
@@ -14,9 +13,7 @@ import { BsGoogle } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { app } from "../firebase/firebase";
-
-const auth = getAuth(app);
+import { auth } from "../firebase/firebase";
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({

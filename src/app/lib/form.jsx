@@ -190,33 +190,39 @@ const Form = () => {
       {/* Form */}
       <form
         id="formx"
-        className="bg-white/10 shadow shadow-black grow hidden p-4 pb-2 mb-14 mx-4 
-        rounded-lg outline outline-0 outline-white text-black"
+        className="bg-white/10 dark:bg-black shadow shadow-black dark:shadow-white/10 grow hidden p-4 pb-2 mb-14 mx-4 
+        rounded-lg outline outline-0 outline-white text-black dark:text-white"
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="name">
+          <label
+            className="block text-black dark:text-white font-medium mb-2"
+            htmlFor="name"
+          >
             Name
           </label>
           <input
             autoComplete="off"
-            className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded border-black/20 p-2"
+            className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded dark:border-white/20 border-black/20 p-2"
             type="text"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleInputChange}
           />
-          <h1 id="errname" className="text-sm text-red-800 hidden pt-1">
+          <h1 id="errname" className="text-sm text-red-600 hidden pt-1">
             Enter Name
           </h1>
         </div>
         <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="email">
+          <label
+            className="block text-black dark:text-white font-medium mb-2"
+            htmlFor="email"
+          >
             Email
           </label>
           <input
-            className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80  border-black/20 p-2"
+            className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80 dark:border-white/20 border-black/20 p-2"
             type="email"
             autoComplete="off"
             id="email"
@@ -224,20 +230,23 @@ const Form = () => {
             value={formData.email}
             onChange={handleInputChange}
           />
-          <h1 id="erremail" className="text-sm text-red-800 hidden pt-1">
+          <h1 id="erremail" className="text-sm text-red-600 hidden pt-1">
             Enter Valid Email
           </h1>
         </div>
-        <div className="mb-4">
-          <label className="block text-black font-medium mb-2" htmlFor="phone">
+        <div className="mb-4 group">
+          <label
+            className="block text-black dark:text-white font-medium mb-2"
+            htmlFor="phone"
+          >
             Phone
           </label>
-          <div className="flex border w-full focus:outline-white/80  border-black/20 flex-row rounded focus:outline  p-2 align-middle">
+          <div className="flex border w-full group-focus:outline-white/80  border-black/20 dark:border-white/20 flex-row rounded focus:outline  p-2 align-middle">
             <h1 className="self-center pointer-events-none text-gray-400/70">
               +91
             </h1>
             <input
-              className=" w-full bg-transparent form-input pl-2 outline-none focus:outline-none"
+              className=" w-full bg-transparent form-input pl-2 outline-none group-hover:outline-none"
               type="tel"
               id="phone"
               autoComplete="off"
@@ -259,22 +268,22 @@ const Form = () => {
               }}
             />
           </div>
-          <h1 id="errphone" className="text-sm text-red-800 hidden pt-1">
+          <h1 id="errphone" className="text-sm text-red-600 hidden pt-1">
             Enter Valid Phone
           </h1>
-          <h1 id="erriphone" className="text-sm text-red-800 hidden pt-1">
+          <h1 id="erriphone" className="text-sm text-red-600 hidden pt-1">
             Only Numerical Values
           </h1>
         </div>
         <div className="mb-4">
           <label
-            className="block text-black font-medium mb-2"
+            className="block text-black dark:text-white font-medium mb-2"
             htmlFor="suggestion"
           >
             Suggestion
           </label>
           <textarea
-            className="w-full border bg-transparent outline-white/50 focus:outline focus:outline-white/80  resize-none h-40 rounded form-input border-black/20 p-2"
+            className="w-full border bg-transparent outline-white/50 focus:outline focus:outline-white/80  resize-none h-40 rounded form-input border-black/20 dark:border-white/20 p-2"
             id="suggestion"
             name="suggestion"
             autoComplete="off"
@@ -283,7 +292,7 @@ const Form = () => {
           />
           <h1
             id="errsuggestion"
-            className="text-sm text-red-800 block pt-1"
+            className="text-sm text-red-600 block pt-1"
           ></h1>
         </div>
         <div className="w-full flex justify-center">

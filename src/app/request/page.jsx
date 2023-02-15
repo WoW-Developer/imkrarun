@@ -1,35 +1,20 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Form from "../lib/form";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Footer from "../lib/footer";
-import { app } from "../firebase/firebase";
-
-const auth = getAuth(app);
+import { auth } from "../firebase/firebase";
 
 export default function Page() {
   const router = useRouter();
   const [fload, setfload] = useState(true);
 
   useEffect(() => {
-    const spix = document.getElementById("spixnner");
-    const data = document.getElementById("data");
-
-    if (fload) {
-      spix.style.display = "block";
-      data.style.display = "none";
-    } else {
-      data.style.display = "block";
-      spix.style.display = "none";
-    }
-  }, [fload]);
-
-  useEffect(() => {
     setTimeout(() => {
       setfload(false);
-    }, 100);
+    }, 500);
   }, []);
 
   onAuthStateChanged(auth, (user) => {
@@ -39,9 +24,44 @@ export default function Page() {
     }
   });
 
-  return (
-    <div className="h-screen w-full items-center justify-center">
-      <div id="spixnner" role="status">
+  if (fload) {
+    return spinner;
+  }
+
+  return MainData;
+}
+
+const MainData = (
+  <div className="h-screen w-full items-center justify-center">
+    <div className="min-h-screen pt-14 flex-col max-w-[800px] mx-auto w-full">
+      <div className=" h-full flex-col mt-24 w-full text-center items-center flex justify-center overflow-hidden">
+        <Image
+          className="h-28 w-full sm:h-36 rounded-lg self-center object-scale-down"
+          src="/document.png"
+          height="80"
+          width="110"
+          priority={false}
+          alt="info graphics"
+        />
+        <h1 className="text-lg text-black dark:text-white">
+          Please Fill this form for an Enquiry
+        </h1>
+      </div>
+      <Form className="mb-0" />
+
+      <Footer />
+      {/* End of 2 Cols */}
+    </div>
+  </div>
+);
+
+const spinner = (
+  <div className="h-screen w-full flex flex-col">
+    <div className=" w-screen max-h-36 h-1/3">
+      <h1></h1>
+    </div>
+    <div className="w-screen justify-center flex">
+      <div>
         <svg
           aria-hidden="true"
           className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -60,29 +80,6 @@ export default function Page() {
         </svg>
         <h1 className="sr-only">Loading...</h1>
       </div>
-
-      <div
-        id="data"
-        className="min-h-screen hidden pt-14 flex-col max-w-[800px] mx-auto w-full"
-      >
-        <div className=" h-full flex-col mt-24 w-full text-center items-center flex justify-center overflow-hidden">
-          <Image
-            className="h-28 w-full sm:h-36 rounded-lg self-center object-scale-down"
-            src="/document.png"
-            height="80"
-            width="110"
-            priority={false}
-            alt="info graphics"
-          />
-          <h1 className="text-lg text-black">
-            Please Fill this form for an Enquiry
-          </h1>
-        </div>
-        <Form className="mb-0" />
-
-        <Footer />
-        {/* End of 2 Cols */}
-      </div>
     </div>
-  );
-}
+  </div>
+);
