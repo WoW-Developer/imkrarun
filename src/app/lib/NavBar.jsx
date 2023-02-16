@@ -30,7 +30,7 @@ const NavBar = () => {
     <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-black dark:text-white shadow dark:shadow-white/20 shadow-black/20 dark:bg-black bg-white ">
       <div className=" w-full max-w-[800px] justify-between flex-row flex">
         <h1 className="text-2xl self-center">
-          <Link className="hover:bg-black/30 p-2 self-center rounded" href="">
+          <Link className="hover:bg-black/30 p-2 self-center rounded" href="/">
             ARUN
           </Link>
         </h1>
