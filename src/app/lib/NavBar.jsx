@@ -1,11 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import Link from "next/link";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase";
 
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(false);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      setUser(true);
+      setLoading(false);
+
+      //console.log(user);
+      // ...
+    } else {
+      setUser(false);
+      setLoading(false);
+    }
+  });
 
   return (
     <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-black dark:text-white shadow dark:shadow-white/20 shadow-black/20 dark:bg-black bg-white ">
@@ -29,10 +48,14 @@ const NavBar = () => {
             </li>
             <li>
               <Link
-                className="hover:bg-black/30 text-xl p-2 self-center rounded"
+                className={
+                  !loading
+                    ? "hover:bg-black/30 text-xl p-2 self-center rounded"
+                    : "hidden hover:bg-black/30 text-xl p-2 self-center rounded"
+                }
                 href="account"
               >
-                Profile
+                {user ? "Profile" : "Login"}
               </Link>
             </li>
             <li>
@@ -75,14 +98,18 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link className="p-2" href={"account"}>
-                  Profile
+                  {user ? "Profile" : "Login"}
                 </Link>
               </li>
               <li
                 className="p-1 m-1 text-center rounded  text-xl text-white "
                 onClick={() => setVisible(!visible)}
               >
-                <Link className="p-2" href={"stu"}>
+                <Link
+                  className={!loading ? "hidden" : "p-2"}
+                  href={"stu"}
+                  prefetch={false}
+                >
                   Student Zone
                 </Link>
               </li>

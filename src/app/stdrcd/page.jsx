@@ -4,14 +4,14 @@ import React, { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
+import { FiEdit } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { HiViewList } from "react-icons/hi";
 
 const Page = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-
+  const [EmptyDoc, setEmptyDoc] = useState(false);
   const [xdata, setxData] = useState({ name: "", docid: "", class: "" });
 
   useEffect(() => {
@@ -25,20 +25,29 @@ const Page = () => {
 
           const xata = docSnap.data();
           const dxta = [];
-          for (let index = 0; index < xata.docid.length; index++) {
+          for (let index = 0; index < xata.name.length; index++) {
+            const nmAr = xata.name[index].split("--");
+            const nmAry = nmAr[0];
+            const nmID = xata.board[index].split("--");
+            const nmAID = nmID[0];
+            const nmCL = xata.class[index].split("--");
+            const nmACl = nmCL[0];
+            const nmDID = nmCL[1];
             const ax = {
-              name: xata.name[index],
-              docid: xata.docid[index],
-              class: xata.class[index],
+              name: nmAry,
+              board: nmAID,
+              class: nmACl,
+              docid: nmDID,
             };
             dxta.push(ax);
           }
           setxData(dxta);
+          setEmptyDoc(false);
           setLoading(false);
         } else {
           // doc.data() will be undefined in this case
-          console.log("No such document!");
-          setxData(null);
+          //console.log("No such document!");
+          setEmptyDoc(true);
           setLoading(false);
         }
       } else {
@@ -50,55 +59,65 @@ const Page = () => {
     return () => {};
   }, [router]);
 
-  if (!loading)
+  if (!loading && EmptyDoc) {
+    return (
+      <div className="w-screen h-screen flex flex-col justify-center items-center">
+        <div className="fixed bottom-9 right-5">
+          <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
+            <Link href={"stdrcd/dataentry"} prefetch={false}>
+              <FiEdit size={25} />
+            </Link>
+          </div>
+        </div>
+        <div>
+          <h1 className="text-black text-xl dark:text-white">
+            No Records Found
+          </h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (!loading && !EmptyDoc)
     return (
       <div className="p-2 h-screen w-screen justify-center flex items-center">
+        <div className="fixed bottom-9 right-5">
+          <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
+            <Link href={"stdrcd/dataentry"} prefetch={false}>
+              <FiEdit size={25} />
+            </Link>
+          </div>
+        </div>
         <div className=" overflow-auto ">
-          <div className="text-black dark:text-white">
-            <table className="table-auto border-collapse border border-slate-500">
-              <thead>
-                <tr>
-                  <th className=" text-center p-4 border-slate-600 rounded-tl border-2">
-                    Name
-                  </th>
-                  <th className="text-center p-4 border-slate-600 border-2">
-                    Class
-                  </th>
-                  <th className="  text-center p-4 border-slate-600 border-2">
-                    Doc-ID
-                  </th>
-                  <th className=" text-center p-4 border-slate-600 border-2 rounded-tr"></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {xdata.map((data, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className=" text-center p-4 border-slate-600 border-2">
-                        {data.name}
-                      </td>
-                      <td className="text-center p-4 border-slate-600 border-2">
-                        {data.class}
-                      </td>
-                      <td className="text-center p-4 border-slate-600 border-2">
-                        {data.docid}
-                      </td>
-                      <td className=" text-center p-4 border-slate-600 border-2">
-                        {
-                          <Link href={"/stdrcd/" + data.docid}>
-                            <HiViewList
-                              className="text-black dark:text-white"
-                              size={20}
-                            />
-                          </Link>
-                        }
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+          <div className="grid py-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-content-center w-fit mx-auto max-w-screen-lg gap-2">
+            {xdata.map((data, index) => {
+              return (
+                <div
+                  key={index}
+                  className="card card-compact w-full bg-base-100 shadow-xl"
+                >
+                  <div className="block p-6 rounded-lg shadow-lg bg-blue-600 max-w-sm">
+                    <h5 className="text-white text-xl leading-tight font-medium mb-4">
+                      {data.name}
+                    </h5>
+                    <p className="text-white/90 text-base mb-2">
+                      Class:- {data.class}
+                    </p>
+                    <p className="text-white/90 text-base mb-2">
+                      Board :- {data.board}
+                    </p>
+                    <button type="button">
+                      <Link
+                        className=" inline-block px-6 py-2.5 bg-white text-blue-600 font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                        href={"/stdrcd/" + data.docid}
+                      >
+                        Details
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           ;
         </div>
@@ -111,7 +130,7 @@ const Page = () => {
 export default Page;
 
 const spinner = (
-  <div className="h-screen w-full flex flex-col">
+  <div className="h-screen w-full  flex flex-col">
     <div className=" w-screen max-h-36 h-1/3">
       <h1></h1>
     </div>

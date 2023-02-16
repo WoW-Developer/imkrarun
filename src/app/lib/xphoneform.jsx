@@ -60,13 +60,13 @@ const Form = () => {
       .then((result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log("login pass");
+        //console.log("login pass");
         // ...
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
         // ...
-        console.log(error.message);
+       // console.log(error.message);
       });
   };
 
@@ -87,7 +87,7 @@ const Form = () => {
   };
 
   const submitPhoneNumberAuth = (response) => {
-    console.log(response);
+    //console.log(response);
 
     var appVerifier = window.recaptchaVerifier;
 

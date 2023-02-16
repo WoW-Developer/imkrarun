@@ -26,7 +26,6 @@ const Form = () => {
   const [errorvisible, setErrorVisible] = useState(false);
   const [errortext, setErrorText] = useState("");
   const [user, setUser] = useState(false);
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -95,6 +94,7 @@ const Form = () => {
               setLoading(false);
               return;
             }
+            window.localStorage.setItem("user", "user");
             setLoading(false);
           } catch (error) {
             setLoading(false);
@@ -121,10 +121,11 @@ const Form = () => {
     else if (auth.currentUser != null) {
       signOut(auth)
         .then(() => {
+          window.localStorage.setItem("user", "no");
           setLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+         // console.log(error);
         });
     }
   };
@@ -177,14 +178,13 @@ const Form = () => {
           <h1 className="sr-only">Loading...</h1>
         </div>
 
-        {/* Form  Phone Sent */}
+        {/* Form Login */}
         <form
           id="formx"
-          className="grow hidden px-4 mx-4 
-        "
+          className="grow hidden px-4 mx-4"
           onSubmit={handleSubmit}
         >
-          <div className="bg-red-600/95 rounded-lg py-1 px-4 hover:bg-red-600 w-full flex flex-row justify-center">
+          <div className="bg-blue-600/95 peer rounded-lg py-1 px-4 m-1 hover:bg-blue-600 w-full flex flex-row justify-center">
             <div className="self-center text-white">
               <BsGoogle />
             </div>
@@ -192,15 +192,30 @@ const Form = () => {
               {!user ? "Login" : "Log-out"}
             </button>
           </div>
+
+          <Link
+            className={
+              `${user}`
+                ? "rounded-lg m-1 text-center bg-blue-600 text-white font-semibold py-2 px-4 w-full flex flex-col flex-nowrap justify-center"
+                : "hidden"
+            }
+            href={"/account/update"}
+            prefetch={false}
+          >
+            Profile Update
+          </Link>
+          <Link
+            className={
+              `${user}`
+                ? "rounded-lg m-1 text-center bg-blue-600 text-white font-semibold py-2 px-4 w-full flex flex-col flex-nowrap justify-center"
+                : "hidden"
+            }
+            href={"/stdrcd"}
+            prefetch={false}
+          >
+            Students Record
+          </Link>
         </form>
-      </div>
-      <div className={`${user}` ? "flex" : "hidden"}>
-        <Link
-          className="text-xl bg-blue-500 text-white"
-          href={user ? "stdrcd" : ""}
-        >
-          Session Record
-        </Link>
       </div>
     </>
   );
