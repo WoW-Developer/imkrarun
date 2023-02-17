@@ -9,19 +9,19 @@ import { auth } from "../firebase/firebase";
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState('Login');
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
-      setUser(true);
+      setUser('Profile');
       setLoading(false);
 
       //console.log(user);
       // ...
     } else {
-      setUser(false);
+      setUser('Login');
       setLoading(false);
     }
   });
@@ -55,7 +55,7 @@ const NavBar = () => {
                 }
                 href="account"
               >
-                {user ? 'Profile': 'Login'}
+                {user}
               </Link>
             </li>
             <li>
@@ -98,7 +98,7 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link className="p-2" href={"account"}>
-                  {user ? 'Profile' : 'Login'}
+                  {user}
                 </Link>
               </li>
               <li
