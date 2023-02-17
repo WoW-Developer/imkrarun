@@ -32,7 +32,7 @@ const NavBar = () => {
             <li>
               <Link
                 className= "hover:bg-black/30 text-xl p-2 self-center rounded"
-                }
+                
                 href="account"
               >
                 Profile
