@@ -55,7 +55,7 @@ const NavBar = () => {
                 }
                 href="account"
               >
-                {user ? Profile: Login}
+                {user ? 'Profile': 'Login'}
               </Link>
             </li>
             <li>
@@ -98,7 +98,7 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link className={!loading ? "hidden" : "p-2"} href={"account"}>
-                  {user ? Profile : Login}
+                  {user ? 'Profile' : 'Login'}
                 </Link>
               </li>
               <li
