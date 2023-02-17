@@ -200,7 +200,6 @@ const Form = () => {
                 : "hidden"
             }
             href={"/account/update"}
-            prefetch={false}
           >
             Profile Update
           </Link>
@@ -211,7 +210,6 @@ const Form = () => {
                 : "hidden"
             }
             href={"/stdrcd"}
-            prefetch={false}
           >
             Students Record
           </Link>
