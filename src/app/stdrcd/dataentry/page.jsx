@@ -76,7 +76,7 @@ const Page = () => {
         <h1 className="text-black m-4 text-xl font-semibold">
           Enter New Student Data
         </h1>
-        <div className="w-full max-w-[600px]">
+        <div className="w-full max-w-[600px] mx-4">
           <div
             className="bg-white/10 dark:bg-black shadow shadow-black dark:shadow-white/10 w-full flex flex-col p-4 pb-2 mb-14 mx-4 
         rounded-lg outline outline-0 outline-white text-black dark:text-white"
