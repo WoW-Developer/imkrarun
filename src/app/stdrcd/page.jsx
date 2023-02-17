@@ -64,7 +64,7 @@ const Page = () => {
       <div className="w-screen h-screen flex flex-col justify-center items-center">
         <div className="fixed bottom-9 right-5">
           <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
-            <Link href={"stdrcd/dataentry"} prefetch={false}>
+            <Link href={"stdrcd/dataentry"}>
               <FiEdit size={25} />
             </Link>
           </div>
@@ -83,7 +83,7 @@ const Page = () => {
       <div className="p-2 h-screen w-screen justify-center flex items-center">
         <div className="fixed bottom-9 right-5">
           <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
-            <Link href={"stdrcd/dataentry"} prefetch={false}>
+            <Link href={"stdrcd/dataentry"}>
               <FiEdit size={25} />
             </Link>
           </div>
