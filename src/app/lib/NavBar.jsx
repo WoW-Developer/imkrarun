@@ -35,9 +35,7 @@ const NavBar = () => {
                 className= "hover:bg-black/30 text-xl p-2 self-center rounded"
                 
                 href="account"
-              >
-                "Profile"
-              </Link>
+              >Profile</Link>
             </li>
             <li>
               <Link
@@ -79,7 +77,7 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link className="p-2" href={"account"}>
-                 "Profile"
+                 Profile
                 </Link>
               </li>
               <li
