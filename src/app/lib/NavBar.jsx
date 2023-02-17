@@ -97,7 +97,7 @@ const NavBar = () => {
                 className="p-1 m-1 text-center rounded  text-xl text-white "
                 onClick={() => setVisible(!visible)}
               >
-                <Link className={!loading ? "hidden" : "p-2"} href={"account"}>
+                <Link className={loading ? "hidden" : "flex p-2"} href={"account"}>
                   {user ? 'Profile' : 'Login'}
                 </Link>
               </li>
