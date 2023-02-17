@@ -66,7 +66,7 @@ const Form = () => {
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
         // ...
-       // console.log(error.message);
+        // console.log(error.message);
       });
   };
 
@@ -116,11 +116,11 @@ const Form = () => {
       >
         <div
           className="flex flex-col relative
-       rounded items-center gap-3 content-center bg-red-600 text-black"
+       rounded items-center gap-3 content-center bg-red-600 "
         >
           <div className="justify-end  p-1 flex w-full">
             <h1
-              className="textxl right-0 p-1 text-black top-0"
+              className="textxl right-0 p-1  top-0"
               onClick={(e) => {
                 e.preventDefault();
                 setErrorVisible(false);
@@ -145,7 +145,7 @@ const Form = () => {
       <div id="spinner" role="status">
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin  fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -170,10 +170,7 @@ const Form = () => {
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label
-            className="block text-black font-medium text-md mb-2"
-            htmlFor="phone"
-          >
+          <label className="block  font-medium text-md mb-2" htmlFor="phone">
             Phone
           </label>
           <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-black p-2 align-middle">
@@ -211,7 +208,7 @@ const Form = () => {
           </h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-white self-center focus:outline focus:outline-blue-600  text-black py-1 px-2 rounded-sm hover:bg-white">
+          <button className="bg-white self-center focus:outline focus:outline-blue-600   py-1 px-2 rounded-sm hover:bg-white">
             Submit
           </button>
         </div>
@@ -225,10 +222,7 @@ const Form = () => {
         onSubmit={handleOTP}
       >
         <div className="mb-4">
-          <label
-            className="block text-black font-medium text-md mb-2"
-            htmlFor="otp"
-          >
+          <label className="block  font-medium text-md mb-2" htmlFor="otp">
             OTP
           </label>
           <div className="flex border w-full flex-row rounded focus:outline focus:outline-blue-700  border-black p-2 align-middle">
@@ -246,7 +240,7 @@ const Form = () => {
           </h1>
         </div>
         <div className="w-full flex justify-center">
-          <button className="bg-white self-center focus:outline focus:outline-blue-600  text-black py-1 px-2 rounded-sm hover:bg-white">
+          <button className="bg-white self-center focus:outline focus:outline-blue-600   py-1 px-2 rounded-sm hover:bg-white">
             Submit
           </button>
         </div>

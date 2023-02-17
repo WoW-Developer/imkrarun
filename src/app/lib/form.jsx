@@ -123,7 +123,7 @@ const Form = () => {
         return;
       })
       .catch((errr) => {
-       // console.log(errr);
+        // console.log(errr);
         return;
       });
   };
@@ -140,11 +140,11 @@ const Form = () => {
       >
         <div
           className="flex flex-col relative
-       rounded items-center gap-3 content-center bg-red-600 text-black"
+       rounded items-center gap-3 content-center bg-red-600 "
         >
           <div className="justify-end  p-1 flex w-full">
             <h1
-              className="textxl right-0 p-1 text-black top-0"
+              className="textxl right-0 p-1  top-0"
               onClick={(e) => {
                 e.preventDefault();
                 setFormData({ name: "", email: "", phone: "", suggestion: "" });
@@ -170,7 +170,7 @@ const Form = () => {
       <div id="spinner" role="status">
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin  fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -190,20 +190,17 @@ const Form = () => {
       {/* Form */}
       <form
         id="formx"
-        className="bg-white/10 dark:bg-black shadow shadow-black dark:shadow-white/10 grow hidden p-4 pb-2 mb-14 mx-4 
-        rounded-lg outline outline-0 outline-white text-black dark:text-white"
+        className="bg-white/10  shadow-black  grow hidden p-4 pb-2 mb-14 mx-4 
+        rounded-lg outline outline-0 outline-white  "
         onSubmit={handleSubmit}
       >
         <div className="mb-4">
-          <label
-            className="block text-black dark:text-white font-medium mb-2"
-            htmlFor="name"
-          >
+          <label className="block   font-medium mb-2" htmlFor="name">
             Name
           </label>
           <input
             autoComplete="off"
-            className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded dark:border-white/20 border-black/20 p-2"
+            className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded  border-black/20 p-2"
             type="text"
             id="name"
             name="name"
@@ -215,14 +212,11 @@ const Form = () => {
           </h1>
         </div>
         <div className="mb-4">
-          <label
-            className="block text-black dark:text-white font-medium mb-2"
-            htmlFor="email"
-          >
+          <label className="block   font-medium mb-2" htmlFor="email">
             Email
           </label>
           <input
-            className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80 dark:border-white/20 border-black/20 p-2"
+            className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80  border-black/20 p-2"
             type="email"
             autoComplete="off"
             id="email"
@@ -235,13 +229,10 @@ const Form = () => {
           </h1>
         </div>
         <div className="mb-4 group">
-          <label
-            className="block text-black dark:text-white font-medium mb-2"
-            htmlFor="phone"
-          >
+          <label className="block   font-medium mb-2" htmlFor="phone">
             Phone
           </label>
-          <div className="flex border w-full group-focus:outline-white/80  border-black/20 dark:border-white/20 flex-row rounded focus:outline  p-2 align-middle">
+          <div className="flex border w-full group-focus:outline-white/80  border-black/20 flex-row rounded focus:outline  p-2 align-middle">
             <h1 className="self-center pointer-events-none text-gray-400/70">
               +91
             </h1>
@@ -276,14 +267,11 @@ const Form = () => {
           </h1>
         </div>
         <div className="mb-4">
-          <label
-            className="block text-black dark:text-white font-medium mb-2"
-            htmlFor="suggestion"
-          >
+          <label className="block   font-medium mb-2" htmlFor="suggestion">
             Suggestion
           </label>
           <textarea
-            className="w-full border bg-transparent outline-white/50 focus:outline focus:outline-white/80  resize-none h-40 rounded form-input border-black/20 dark:border-white/20 p-2"
+            className="w-full border bg-transparent outline-white/50 focus:outline focus:outline-white/80  resize-none h-40 rounded form-input border-black/20 p-2"
             id="suggestion"
             name="suggestion"
             autoComplete="off"

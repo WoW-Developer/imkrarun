@@ -1,5 +1,5 @@
 "use client";
-import { db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
 import {
   addDoc,
   arrayUnion,
@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { onAuthStateChanged } from "firebase/auth";
 
 const Page = () => {
   const router = useRouter();
@@ -30,42 +31,45 @@ const Page = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    addDoc(
-      collection(db, "student"),
-      {
-        name: formData.name,
-        class: formData.class,
-        group: formData.group,
-        board: formData.board,
-      },
-      { merge: true }
-    )
-      .then(function (docRef) {
-        //console.log("Document written with ID: ", docRef.id);
-
-        setDoc(
-          doc(db, "student", "allstudents"),
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        addDoc(
+          collection(db, "session-rooms"),
           {
-            name: arrayUnion(formData.name + "--" + docRef.id),
-            class: arrayUnion(formData.class + "--" + docRef.id),
-            board: arrayUnion(formData.board + "--" + docRef.id),
+            name: formData.name,
+            class: formData.class,
+            group: formData.group,
+            board: formData.board,
+            tutor: user.uid,
           },
           { merge: true }
         )
-          .then(function (docR) {
-            setLoading(false);
-            //console.log("Document written data ", docR);
-            router.back();
+          .then(function (docRef) {
+            //console.log("Document written with ID: ", docRef.id);
+
+            setDoc(
+              doc(db, "session-rooms", docRef.id),
+              {
+                docid: docRef.id,
+              },
+              { merge: true }
+            )
+              .then(function (docR) {
+                setLoading(false);
+                //console.log("Document written data ", docR);
+                router.back();
+              })
+              .catch(function (err) {
+                setLoading(false);
+                console.error("Error adding document: ", err);
+              });
           })
-          .catch(function (err) {
+          .catch(function (error) {
             setLoading(false);
-            console.error("Error adding document: ", err);
+            console.error("Error adding document: ", error);
           });
-      })
-      .catch(function (error) {
-        setLoading(false);
-        console.error("Error adding document: ", error);
-      });
+      }
+    });
     //console.log(formData);
   };
 
@@ -73,24 +77,19 @@ const Page = () => {
     return (
       <div className="w-screen min-h-screen flex flex-col justify-center items-center">
         <div className="min-h-[100px]"></div>
-        <h1 className="text-black m-4 text-xl font-semibold">
-          Enter New Student Data
-        </h1>
+        <h1 className=" m-4 text-xl font-semibold">Enter New Student Data</h1>
         <div className="w-full max-w-[600px] mx-4">
           <div
-            className="bg-white/10 dark:bg-black shadow shadow-black dark:shadow-white/10 w-full flex flex-col p-4 pb-2 mb-14 mx-4 
-        rounded-lg outline outline-0 outline-white text-black dark:text-white"
+            className="bg-white/10  shadow shadow-black  w-full flex flex-col p-4 pb-2 mb-14 mx-4 
+        rounded-lg outline outline-0 outline-white  "
           >
             <div className="mb-4">
-              <label
-                className="block text-black dark:text-white font-medium mb-2"
-                htmlFor="name"
-              >
+              <label className="block   font-medium mb-2" htmlFor="name">
                 Name
               </label>
               <input
                 autoComplete="off"
-                className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded dark:border-white/20 border-black/20 p-2"
+                className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded  border-black/20 p-2"
                 type="text"
                 id="name"
                 name="name"
@@ -102,15 +101,12 @@ const Page = () => {
               </h1>
             </div>
             <div className="mb-4">
-              <label
-                className="block text-black dark:text-white font-medium mb-2"
-                htmlFor="class"
-              >
+              <label className="block   font-medium mb-2" htmlFor="class">
                 Class
               </label>
               <input
                 autoComplete="off"
-                className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded dark:border-white/20 border-black/20 p-2"
+                className="w-full starlabel focus:outline bg-transparent focus:outline-white/80 form-input border rounded  border-black/20 p-2"
                 type="text"
                 id="class"
                 name="class"
@@ -122,14 +118,11 @@ const Page = () => {
               </h1>
             </div>
             <div className="mb-4">
-              <label
-                className="block text-black dark:text-white font-medium mb-2"
-                htmlFor="group"
-              >
+              <label className="block   font-medium mb-2" htmlFor="group">
                 Class Group
               </label>
               <select
-                className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80 dark:border-white/20 border-black/20 p-2"
+                className="w-full starlabel bg-transparent  form-input border rounded focus:outline focus:outline-white/80 border-black/20 p-2"
                 type="text"
                 autoComplete="off"
                 id="group"
@@ -150,13 +143,10 @@ const Page = () => {
               </h1>
             </div>
             <div className="mb-4 group">
-              <label
-                className="block text-black dark:text-white font-medium mb-2"
-                htmlFor="board"
-              >
+              <label className="block   font-medium mb-2" htmlFor="board">
                 Board
               </label>
-              <div className="flex border w-full group-focus:outline-white/80  border-black/20 dark:border-white/20 flex-row rounded focus:outline  p-2 align-middle">
+              <div className="flex border w-full group-focus:outline-white/80  border-black/20  flex-row rounded focus:outline  p-2 align-middle">
                 <select
                   className=" w-full bg-transparent form-input pl-2 outline-none group-hover:outline-none"
                   type="text"
@@ -206,7 +196,7 @@ const spinner = (
       <div>
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin  fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

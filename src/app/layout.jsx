@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
 
       <head />
 
-      <body className="h-full w-full dark:bg-black bg-white">
+      <body className="h-full w-full bg-blue-600 text-white">
         <div className={google.className}>
           <div className="flex flex-col">
             <NavBar />

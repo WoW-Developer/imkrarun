@@ -9,29 +9,27 @@ import { auth } from "../firebase/firebase";
 const NavBar = () => {
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [xuser, setUser] = useState('Login');
-  
-  useEffect(()=>{
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      setUser('Profile');
-      setLoading(false);
+  const [xuser, setUser] = useState("Login");
 
-      //console.log(user);
-      // ...
-    } else {
-      setUser('Login');
-      setLoading(false);
-    }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        setUser("Profile");
+        setLoading(false);
+
+        //console.log(user);
+        // ...
+      } else {
+        setUser("Login");
+        setLoading(false);
+      }
+    });
   });
 
-})
-  
-
   return (
-    <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 text-black dark:text-white shadow dark:shadow-white/20 shadow-black/20 dark:bg-black bg-white ">
+    <div className="flex fixed top-0 left-0 right-0 py-2 justify-center px-4 shadow bg-blue-600  shadow-black/20   ">
       <div className=" w-full max-w-[800px] justify-between flex-row flex">
         <h1 className="text-2xl self-center">
           <Link className="hover:bg-black/30 p-2 self-center rounded" href="/">
@@ -52,11 +50,10 @@ onAuthStateChanged(auth, (user) => {
             </li>
             <li>
               <Link
-                className= "hover:bg-black/30 text-xl p-2 self-center rounded"
-                
+                className="hover:bg-black/30 text-xl p-2 self-center rounded"
                 href="account"
               >
-                  {xuser}
+                {xuser}
               </Link>
             </li>
             <li>
@@ -106,10 +103,7 @@ onAuthStateChanged(auth, (user) => {
                 className="p-1 m-1 text-center rounded  text-xl text-white "
                 onClick={() => setVisible(!visible)}
               >
-                <Link
-                  className="p-2"
-                  href={"stu"}
-                >
+                <Link className="p-2" href={"stu"}>
                   Student Zone
                 </Link>
               </li>

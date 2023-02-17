@@ -1,0 +1,78 @@
+[debug] [2023-02-17T15:27:15.788Z] ----------------------------------------------------------------------
+[debug] [2023-02-17T15:27:15.797Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Arun\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --import D:Arunweb-projectsFireEmulatorData --export-on-exit
+[debug] [2023-02-17T15:27:15.799Z] CLI Version:   11.22.0
+[debug] [2023-02-17T15:27:15.800Z] Platform:      win32
+[debug] [2023-02-17T15:27:15.800Z] Node Version:  v19.3.0
+[debug] [2023-02-17T15:27:15.801Z] Time:          Fri Feb 17 2023 20:57:15 GMT+0530 (India Standard Time)
+[debug] [2023-02-17T15:27:15.802Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-17T15:27:16.762Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-17T15:27:16.764Z] > authorizing via signed-in user (kumararunlbh@gmail.com)
+[debug] [2023-02-17T15:27:18.865Z] java version "19.0.1" 2022-10-18
+
+[debug] [2023-02-17T15:27:18.869Z] Java(TM) SE Runtime Environment (build 19.0.1+10-21)
+Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
+
+[debug] [2023-02-17T15:27:19.311Z] Parsed Java major version: 19
+[info] i  emulators: Starting emulators: auth, firestore, database {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, firestore, database"}}
+[debug] [2023-02-17T15:27:19.546Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-17T15:27:19.546Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-17T15:27:19.547Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-17T15:27:19.547Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-17T15:27:19.561Z] [database] Database Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-17T15:27:19.593Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"database":[{"address":"127.0.0.1","family":"IPv4","port":9000}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-02-17T15:27:19.609Z] [hub] writing locator at C:\Users\Arun\AppData\Local\Temp\hub-session-tracking-ab540.json
+[info] i  firestore: Importing data from D:\Arun\web-projects\imkrarun\Arunweb-projectsFireEmulatorData\firestore_export\firestore_export.overall_export_metadata {"metadata":{"emulator":{"name":"firestore"},"message":"Importing data from D:\\Arun\\web-projects\\imkrarun\\Arunweb-projectsFireEmulatorData\\firestore_export\\firestore_export.overall_export_metadata"}}
+[debug] [2023-02-17T15:27:19.761Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-02-17T15:27:19.761Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2023-02-17T15:27:19.762Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","C:\\Users\\Arun\\.cache\\firebase\\emulators\\cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","session-tracking-ab540","--seed_from_export","D:\\Arun\\web-projects\\imkrarun\\Arunweb-projectsFireEmulatorData\\firestore_export\\firestore_export.overall_export_metadata","--rules","D:\\Arun\\web-projects\\imkrarun\\firestore.rules","--single_project_mode",true],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\Arun\\\\.cache\\\\firebase\\\\emulators\\\\cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"session-tracking-ab540\",\"--seed_from_export\",\"D:\\\\Arun\\\\web-projects\\\\imkrarun\\\\Arunweb-projectsFireEmulatorData\\\\firestore_export\\\\firestore_export.overall_export_metadata\",\"--rules\",\"D:\\\\Arun\\\\web-projects\\\\imkrarun\\\\firestore.rules\",\"--single_project_mode\",true],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
+[info] +  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
+[debug] [2023-02-17T15:27:40.842Z] > refreshing access token with scopes: []
+[debug] [2023-02-17T15:27:40.856Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-02-17T15:27:40.857Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-02-17T15:27:41.534Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-02-17T15:27:41.535Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-02-17T15:27:41.577Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/session-tracking-ab540 [none]
+[debug] [2023-02-17T15:27:42.058Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/session-tracking-ab540 200
+[debug] [2023-02-17T15:27:42.059Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/session-tracking-ab540 {"projectId":"session-tracking-ab540","projectNumber":"148462036898","displayName":"Session Tracking ","name":"projects/session-tracking-ab540","resources":{"hostingSite":"session-tracking-ab540","realtimeDatabaseInstance":"session-tracking-ab540-default-rtdb"},"state":"ACTIVE","etag":"1_286d4883-601a-441c-9adb-b724de807870"}
+[debug] [2023-02-17T15:27:42.060Z] database rules config:  [{"instance":"session-tracking-ab540-default-rtdb","rules":"D:\\Arun\\web-projects\\imkrarun\\database.rules.json"}]
+[debug] [2023-02-17T15:27:42.065Z] Ignoring unsupported arg: projectId {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: projectId"}}
+[debug] [2023-02-17T15:27:42.066Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-02-17T15:27:42.067Z] Ignoring unsupported arg: rules {"metadata":{"emulator":{"name":"database"},"message":"Ignoring unsupported arg: rules"}}
+[debug] [2023-02-17T15:27:42.067Z] Starting Database Emulator with command {"binary":"java","args":["-Duser.language=en","-jar","C:\\Users\\Arun\\.cache\\firebase\\emulators\\firebase-database-emulator-v4.11.0.jar","--host","127.0.0.1","--port",9000,"--single_project_mode","Warning"],"optionalArgs":["port","host","functions_emulator_port","functions_emulator_host","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"database"},"message":"Starting Database Emulator with command {\"binary\":\"java\",\"args\":[\"-Duser.language=en\",\"-jar\",\"C:\\\\Users\\\\Arun\\\\.cache\\\\firebase\\\\emulators\\\\firebase-database-emulator-v4.11.0.jar\",\"--host\",\"127.0.0.1\",\"--port\",9000,\"--single_project_mode\",\"Warning\"],\"optionalArgs\":[\"port\",\"host\",\"functions_emulator_port\",\"functions_emulator_host\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[info] i  database: Database Emulator logging to database-debug.log {"metadata":{"emulator":{"name":"database"},"message":"Database Emulator logging to \u001b[1mdatabase-debug.log\u001b[22m"}}
+[info] i  auth: Importing config from D:\Arun\web-projects\imkrarun\Arunweb-projectsFireEmulatorData\auth_export\config.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing config from D:\\Arun\\web-projects\\imkrarun\\Arunweb-projectsFireEmulatorData\\auth_export\\config.json"}}
+[info] i  auth: Importing accounts from D:\Arun\web-projects\imkrarun\Arunweb-projectsFireEmulatorData\auth_export\accounts.json {"metadata":{"emulator":{"name":"auth"},"message":"Importing accounts from D:\\Arun\\web-projects\\imkrarun\\Arunweb-projectsFireEmulatorData\\auth_export\\accounts.json"}}
+[debug] [2023-02-17T15:28:29.335Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2023-02-17T15:28:29.335Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2023-02-17T15:28:29.335Z] Starting Emulator UI with command {"binary":"node","args":["C:\\Users\\Arun\\.cache\\firebase\\emulators\\ui-v1.11.2\\server\\server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"C:\\\\Users\\\\Arun\\\\.cache\\\\firebase\\\\emulators\\\\ui-v1.11.2\\\\server\\\\server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
+[debug] [2023-02-17T15:28:30.304Z] Web / API server started at 127.0.0.1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
+[debug] [2023-02-17T15:28:30.305Z] Web / API server started at ::1:4000
+ {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
+[debug] [2023-02-17T15:28:30.434Z] >>> [apiv2][query] PUT http://127.0.0.1:9000/.settings/rules.json ns=session-tracking-ab540-default-rtdb
+[debug] [2023-02-17T15:28:30.435Z] >>> [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json "{\n  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */\n  \"rules\": {\n    \".read\": false,\n    \".write\": false\n  }\n}"
+[debug] [2023-02-17T15:30:13.018Z] <<< [apiv2][status] PUT http://127.0.0.1:9000/.settings/rules.json 200
+[debug] [2023-02-17T15:30:13.019Z] <<< [apiv2][body] PUT http://127.0.0.1:9000/.settings/rules.json {"status":"ok"}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────────┬────────────────┬─────────────────────────────────┐
+│ Emulator       │ Host:Port      │ View in Emulator UI             │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Authentication │ 127.0.0.1:9099 │ http://127.0.0.1:4000/auth      │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Firestore      │ 127.0.0.1:8080 │ http://127.0.0.1:4000/firestore │
+├────────────────┼────────────────┼─────────────────────────────────┤
+│ Database       │ 127.0.0.1:9000 │ http://127.0.0.1:4000/database  │
+└────────────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500, 9150
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 

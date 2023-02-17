@@ -8,13 +8,7 @@ export default function Head() {
       <meta name="description" content="I am your maths mentor" />
       <meta
         name="theme-color"
-        media="(prefers-color-scheme: light)"
         content="#0d47a1"
-      />
-      <meta
-        name="theme-color"
-        media="(prefers-color-scheme: dark)"
-        content="#000"
       />
       <link rel="icon" href="/favicon.ico" />
       <link

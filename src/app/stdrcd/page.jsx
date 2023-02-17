@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase/firebase";
 import { FiEdit } from "react-icons/fi";
@@ -12,67 +12,65 @@ const Page = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [EmptyDoc, setEmptyDoc] = useState(false);
-  const [xdata, setxData] = useState({ name: "", docid: "", class: "" });
+  const [xdata, setxData] = useState();
 
   useEffect(() => {
-    const studentRef = doc(db, "student", "allstudents");
+    const studentRef = collection(db, "session-rooms");
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const docSnap = await getDoc(studentRef, auth);
-        if (docSnap.exists()) {
-          // console.log(docSnap.data());
+        const q = query(studentRef, where("tutor", "==", user.uid));
 
-          const xata = docSnap.data();
-          const dxta = [];
-          for (let index = 0; index < xata.name.length; index++) {
-            const nmAr = xata.name[index].split("--");
-            const nmAry = nmAr[0];
-            const nmID = xata.board[index].split("--");
-            const nmAID = nmID[0];
-            const nmCL = xata.class[index].split("--");
-            const nmACl = nmCL[0];
-            const nmDID = nmCL[1];
-            const ax = {
-              name: nmAry,
-              board: nmAID,
-              class: nmACl,
-              docid: nmDID,
-            };
-            dxta.push(ax);
-          }
-          setxData(dxta);
+        const docSnap = await getDocs(q);
+        const data = [];
+        docSnap.forEach((xdoc) => {
+          const doc = xdoc.data();
+          const ax = {
+            name: doc.name,
+            board: doc.board,
+            class: doc.class,
+            docid: doc.docid,
+          };
+          data.push(ax);
+
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", xdoc.data());
+        });
+        console.log(data);
+        if (data.length != 0) {
           setEmptyDoc(false);
-          setLoading(false);
-        } else {
-          // doc.data() will be undefined in this case
-          //console.log("No such document!");
-          setEmptyDoc(true);
-          setLoading(false);
+          setxData(data);
         }
+        if (data.length === 0) {
+          setEmptyDoc(true);
+          setxData({
+            name: "",
+            board: "",
+            class: "",
+            docid: "",
+          });
+        }
+
+        setLoading(false);
       } else {
         console.error("User Absent");
         router.replace("/account");
       }
     });
-
-    return () => {};
   }, [router]);
 
   if (!loading && EmptyDoc) {
     return (
       <div className="w-screen h-screen flex flex-col justify-center items-center">
-        <div className="fixed bottom-9 right-5">
-          <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
+        <div>
+          <h1 className=" text-xl ">No Records Found</h1>
+        </div>
+        <div className="m-4">
+          <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-white text-blue-600">
             <Link href={"stdrcd/dataentry"}>
               <FiEdit size={25} />
             </Link>
           </div>
-        </div>
-        <div>
-          <h1 className="text-black text-xl dark:text-white">
-            No Records Found
-          </h1>
         </div>
       </div>
     );
@@ -80,15 +78,8 @@ const Page = () => {
 
   if (!loading && !EmptyDoc)
     return (
-      <div className="p-2 h-screen w-screen justify-center flex items-center">
-        <div className="fixed bottom-9 right-5">
-          <div className="rounded-full shadow-sm shadow-black p-3 text-center items-center justify-center bg-blue-600 text-white">
-            <Link href={"stdrcd/dataentry"}>
-              <FiEdit size={25} />
-            </Link>
-          </div>
-        </div>
-        <div className=" overflow-auto ">
+      <div className="p-2 h-screen w-screen justify-center flex flex-col items-center">
+        <div className=" overflow-auto max-w-screen-lg ">
           <div className="grid py-14 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 place-content-center w-fit mx-auto max-w-screen-lg gap-2">
             {xdata.map((data, index) => {
               return (
@@ -96,19 +87,19 @@ const Page = () => {
                   key={index}
                   className="card card-compact w-full bg-base-100 shadow-xl"
                 >
-                  <div className="block p-6 rounded-lg shadow-lg bg-blue-600 max-w-sm">
-                    <h5 className="text-white text-xl leading-tight font-medium mb-4">
+                  <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                    <h5 className="text-black text-xl leading-tight font-medium mb-4">
                       {data.name}
                     </h5>
-                    <p className="text-white/90 text-base mb-2">
+                    <p className="text-black/90 text-base mb-2">
                       Class:- {data.class}
                     </p>
-                    <p className="text-white/90 text-base mb-2">
+                    <p className="text-black/90 text-base mb-2">
                       Board :- {data.board}
                     </p>
                     <button type="button">
                       <Link
-                        className=" inline-block px-6 py-2.5 bg-white text-blue-600 font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
+                        className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0  active:shadow-lg transition duration-150 ease-in-out"
                         href={"/stdrcd/" + data.docid}
                       >
                         Details
@@ -119,7 +110,13 @@ const Page = () => {
               );
             })}
           </div>
-          ;
+          <div className="flex justify-start">
+            <div className="rounded-full flex w-fit shadow-sm shadow-black p-3 text-center items-center justify-center bg-white text-blue-600">
+              <Link href={"stdrcd/dataentry"}>
+                <FiEdit size={20} />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -138,7 +135,7 @@ const spinner = (
       <div>
         <svg
           aria-hidden="true"
-          className="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+          className="w-8 h-8 mr-2 text-gray-200 animate-spin fill-blue-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

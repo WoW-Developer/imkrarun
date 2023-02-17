@@ -3,27 +3,33 @@
 @tailwind utilities;
 
 .starlabel:after {
-    content:" *";
-    color: red;
-  }
+  content: " *";
+  color: red;
+}
 
-  /* .bgrt{
+/* .bgrt{
     background-image: url('/BGSvG.svg');
     background-repeat: no-repeat;
     background-size: cover;
     
 } */
 
-
-html, body {
-    margin: 0;
-    height: 100%;
+html,
+body {
+  margin: 0;
+  height: 100%;
 }
 
 * {
-    -ms-overflow-style: Safari;  /* Internet Explorer 10+ */
-    scrollbar-width: 2px;  /* Firefox */
+  -ms-overflow-style: Safari; /* Internet Explorer 10+ */
+  scrollbar-width: 2px; /* Firefox */
 }
-*::-webkit-scrollbar { 
-    width: 2px;  /* Safari and Chrome */
+*::-webkit-scrollbar {
+  width: 2px; /* Safari and Chrome */
+}
+
+* {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }

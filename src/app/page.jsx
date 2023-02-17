@@ -9,16 +9,16 @@ export default function Home() {
       <div className="h-14 sm:h-44">
         <h1 className="p-2"></h1>
       </div>
-      <div className="flex p-6 bg-black/10 dark:bg-white/10 rounded-2xl flex-col-reverse items-center sm:flex-row-reverse">
+      <div className="flex p-6 bg-black/10  rounded-2xl flex-col-reverse items-center sm:flex-row-reverse">
         {/* 1st Col */}
-        <div className="sm:basis-1/2 text-black dark:text-white text-lg sm:text-2xl p-4 text-center items-center flex flex-col self-center">
+        <div className="sm:basis-1/2   text-lg sm:text-2xl p-4 text-center items-center flex flex-col self-center">
           <h1>
             Maths doesn&#039;t have to be a mystery! I&#039;m an experienced
             tutor helping students learn and understand the fundamentals of
             maths. Let me help unlock your potential!
           </h1>
           <Link
-            className="rounded-md w-fit items-center flex bg-blue-600/95 hover:bg-blue-600 text-base text-white p-2 mt-8 mb-0"
+            className="rounded-md w-fit items-center flex bg-red-600/95 hover:bg-red-600 text-base text-white p-2 mt-8 mb-0"
             href={"/request"}
           >
             Book A Demo
@@ -40,7 +40,7 @@ export default function Home() {
         </div>
         {/* End of 2 Cols */}
       </div>
-      <h1 className="text-black dark:text-white whitespace-pre-wrap select-none text-xl p-2 mt-28">
+      <h1 className="whitespace-pre-wrap select-none text-xl p-2 mt-28">
         Dear Students / Parents,{"\n"}
         {"\n"}Are you or your child struggling with mathematics and in need of a
         tutor who can help improve their understanding and confidence in the
@@ -68,7 +68,7 @@ export default function Home() {
 
       <div className="flex justify-start">
         <Link
-          className="rounded-md w-fit items-center flex bg-blue-600/95 hover:bg-blue-600 text-base text-white p-2 mt-8 mb-0"
+          className="rounded-md w-fit items-center flex bg-red-600/95 hover:bg-red-600 text-base text-white p-2 mt-8 mb-0"
           href={"/request"}
         >
           Book A Demo
