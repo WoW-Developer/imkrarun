@@ -106,7 +106,7 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link
-                  className={!loading ? "hidden" : "p-2"}
+                  className="p-2"
                   href={"stu"}
                   prefetch={false}
                 >
