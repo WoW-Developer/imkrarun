@@ -98,7 +98,7 @@ const NavBar = () => {
                 onClick={() => setVisible(!visible)}
               >
                 <Link className="p-2" href={"account"}>
-                  {user}
+                  Profile
                 </Link>
               </li>
               <li
