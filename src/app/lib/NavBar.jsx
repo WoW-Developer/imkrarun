@@ -109,7 +109,6 @@ onAuthStateChanged(auth, (user) => {
                 <Link
                   className="p-2"
                   href={"stu"}
-                  prefetch={false}
                 >
                   Student Zone
                 </Link>
