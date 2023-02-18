@@ -1,13 +1,12 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 
 function NormalView({ userData }) {
   console.log("user pic " + userData.photoURL);
   return (
     <div className="bg-white/10 rounded-lg p-4 flex flex-col justify-center items-start">
       <div className="rounded-full h-24 w-24 my-2 overflow-clip">
-        <Image
+        <img
           alt="userPicture"
           src={userData.photoURL}
           height={200}
