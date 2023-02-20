@@ -2,7 +2,6 @@
 import "./lib/globals.css";
 import { Raleway } from "@next/font/google";
 import NavBar from "./lib/NavBar";
-// const raleway = Raleway({ subsets: ["latin"] });
 const google = Raleway({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {

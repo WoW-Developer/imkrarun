@@ -13,6 +13,16 @@ const nextConfig = {
         hostname: "encrypted-tbn0.gstatic.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        port: "",
+      },
     ],
   },
 

@@ -1,0 +1,1 @@
+firebase emulators:start --import D:\Arun\web-projects\Arunweb-projectsFireEmulatorData --export-on-exit
