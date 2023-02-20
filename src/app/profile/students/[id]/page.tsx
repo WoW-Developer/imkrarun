@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { addDoc, collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
-import { auth, db } from '@/app/lib/firebase/firebase';
+import { auth, db } from '../../../lib/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { toast, Toaster } from 'react-hot-toast';
@@ -11,10 +11,12 @@ import { Roboto_Flex } from "@next/font/google";
 
 const google = Roboto_Flex({ subsets: ["latin"] });
 
+
 const Page = ({params}) => {
+    const pid:string =params.id;
     const router = useRouter();
     // Create a query against the collection.
-    const [student,setStudent] = useState({});
+    const [student,setStudent] = useState([]);
     const [loading,setLoading] = useState(true);
     const [addnew,setAddnew] = useState(false);
     const [formData,setFormData] = useState({
@@ -26,7 +28,7 @@ const Page = ({params}) => {
     useEffect(() => {
         onAuthStateChanged(auth,(user) => {
             if (user) {
-                const roomsRef = collection(db, "session-rooms",params.id,"sessions");
+                const roomsRef = collection(db, "session-rooms",pid,"sessions");
                 const q = query(roomsRef);
                 getDocs(q).then((querySnapshot) => {
                     const ax = [];
@@ -34,7 +36,7 @@ const Page = ({params}) => {
                         // doc.data() is never undefined for query doc snapshots
                         const dd = doc.data();
                         const data = {
-                            date: dd.date,
+                            date:dd.date,
                             payment:dd.payment,
                             time:dd.time,
                             id:dd.docid
@@ -49,7 +51,7 @@ const Page = ({params}) => {
                 router.replace("/");
         });
 
-    },[params.id, router])
+    },[pid, router])
     
 
     const addNewSession = () => {
@@ -57,13 +59,13 @@ const Page = ({params}) => {
             toast.error('Please fill all the fields');
             return;
         }
-        addDoc(collection(db, "session-rooms",params.id,"sessions"), {
+        addDoc(collection(db, "session-rooms",pid,"sessions"), {
             date:formData.date,
             payment:formData.payment,
             time:formData.time,
           }).then((docRef) => {
             setAddnew(false);
-            setDoc(doc(db, "session-rooms",params.id,"sessions",docRef.id),{docid:docRef.id},{merge:true}).then(()=>{
+            setDoc(doc(db, "session-rooms",pid,"sessions",docRef.id),{docid:docRef.id},{merge:true}).then(()=>{
                 toast.success('Session Added Successfully');
             })
             student.push(formData);
@@ -73,7 +75,7 @@ const Page = ({params}) => {
           
     }
     
-    const handleChange = (event) => {
+    const handleChange = (event: { target: { name: string; value: string; }; }) => {
         setFormData({...formData, [event.target.name]: event.target.value });
 
       };
@@ -96,7 +98,7 @@ const Page = ({params}) => {
       <input id="payment" className='rounded-lg my-2 p-2 text-black bg-white/30' name='payment' required={true} type="text" value={formData.payment} onChange={handleChange} />
       </div>
       <button className='p-2 text-black bg-white rounded-lg bg-white/50' type="submit" onClick={(e)=>{e.preventDefault();addNewSession()}}>Submit</button>
-      <button className='p-2 text-black bg-white rounded-lg bg-white/50 my-2' type="cancel" onClick={(e)=>{e.preventDefault(); setAddnew(false)}}>Cancel</button>
+      <button className='p-2 text-black bg-white rounded-lg bg-white/50 my-2' typeof="cancel" onClick={(e)=>{e.preventDefault(); setAddnew(false)}}>Cancel</button>
     </form>
                 </div></div>
         )
@@ -141,7 +143,8 @@ if (!loading && !addnew){  return (
                             return;
                         }
                      setLoading(true);
-                     setDoc(doc(db, "session-rooms",params.id,"sessions",data.id ), {payment:"Done"},{merge:true}).then((docRef)=>{
+                     setDoc(doc(db, "session-rooms",pid,"sessions",data.id ), {payment:"Done"},{merge:true})
+                     .then(()=>{
                         data.payment = "Done";
                         toast.success('Payment Status Changed');
                         setLoading(false);

@@ -2,28 +2,36 @@
 
 import { useEffect, useState } from 'react'
 import { addDoc, setDoc, collection, getDocs, query, where, doc } from "firebase/firestore";
-import { auth, db } from '@/app/lib/firebase/firebase';
+import { auth, db } from '../../lib/firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { Roboto_Flex } from "@next/font/google";
 import { toast, Toaster } from 'react-hot-toast';
-import { fromJSON } from 'postcss';
+
 
 
 const google = Roboto_Flex({ subsets: ["latin"] });
+
+type formData={
+    name:string,
+    class:string,
+    board:string,
+    group:string,
+    tutor:string,
+}
 const Page = () => {
     const router = useRouter();
     // Create a query against the collection.
-    const [student,setStudent] = useState({});
+    const [student,setStudent] = useState([]);
     const [loading,setLoading] = useState(true);
     const [addnew,setAddnew] = useState(false);
-    const [formData,setFormData] = useState({
-        name:"",
+    const [formData,setFormData] = useState<formData>(
+        {name:"",
         class:"",
         board:"",
         group:"",
-        tutor:""
-    });
+        tutor:""}
+    );
     
     useEffect(() => {
         
@@ -96,7 +104,7 @@ const Page = () => {
                
     }
     
-    const handleChange = (event) => {
+    const handleChange = (event: { target: { name: string; value: string; }; }) => {
         setFormData({...formData, [event.target.name]: event.target.value });
 
       };
@@ -124,7 +132,7 @@ const Page = () => {
       </div>
       <button className='p-2 text-black bg-white rounded-lg bg-white/50' type="submit" onClick={(e)=>{e.preventDefault();
         addNewStudent()}}>Submit</button>
-      <button className='p-2 text-black bg-white rounded-lg bg-white/50 my-2' type="cancel" onClick={(e)=>{e.preventDefault(); setAddnew(false)}}>Cancel</button>
+      <button className='p-2 text-black bg-white rounded-lg bg-white/50 my-2' typeof="cancel" onClick={(e)=>{e.preventDefault(); setAddnew(false)}}>Cancel</button>
     </form>
                 </div></div>
         )

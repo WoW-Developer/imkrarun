@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { BsToggleOff, BsToggleOn } from 'react-icons/bs'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../lib/firebase/firebase'
-import Image from 'next/image'
 
 const Profile = () => {
     const router = useRouter();
@@ -45,7 +44,7 @@ const Profile = () => {
          setLoading(false)
          setEditProfile(false)
        });
-      console.log(`Submitted name: ${name}`);
+      //console.log(`Submitted name: ${name}`);
     };
   
     const handleChange = (event) => {
